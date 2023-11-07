@@ -1,12 +1,18 @@
-# Projeto ABC 
+# Projeto ToDoAdventurer
 [Nome do projeto ou do grupo - este será seu identificador único até o final da disciplina]
 
 ## Integrantes do grupo 
-[Liste o nome completo de todos os integrantes do grupo com seus respectivos e-mails assim como no Google Classroom]
- * Fulano da Silva Junior - fulano@abc.com
- * Beltrano de Amorim Cardoso - beltrano@abc.com
- * Maria das Graças Nascimento - maria@abc.com
- * João da Fonseca - joao@abc.com
+
+ * José Edson Amorim Sebastião - joseedson.sebastiao@ufrpe.br
+ * Juliana Andresa Vieira de Lima - juliana.andresa@ufrpe.br
+ * Raphael Albino - raphaelalbino_@hotmail.com
+ * Letícia Viana - leticia.paulams@gmail.com
+ * Apolo Albuquerque - apolo.vinicius@ufrpe.br
+ * Victor de Moraes - victor.cmoraes@ufrpe.br
+ * Samuel Bezerra - samuelbmenezes7@gmail.com
+ * Carlos Augusto Ferreira Freire - carlos.augustof@ufrpe.br
+ * Mateus Rodrigo Gomes da Silva - mateusrodrigo9122@gmail.com
+ * Gabriel Cavalcanti Marques Brandão - gabrielbrandao.net@gmail.com
 
 ## Descrição geral do projeto 
 Nesta descrição, apresente um texto resumido com a(s) principal(is) funcionalidade(s) do sistema. 
