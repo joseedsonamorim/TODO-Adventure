@@ -63,12 +63,10 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
 
 **REQ6** - O sistema deve ser responsivo, funcionando em dispositivos móveis e desktop.
 
-**REQ7** - Deve haver um mecanismo de gamificação para recompensar os usuários com itens virtuais ou vantagens conforme eles progridam em suas jornadas.
+**REQ7** - Deve haver uma função de recuperação de senha para usuários que esqueçam suas senhas.
 
-**REQ8** - Deve haver uma função de recuperação de senha para usuários que esqueçam suas senhas.
+**REQ8** - O sistema deve fornecer suporte e documentação adequados para os usuários.
 
-**REQ9** - O sistema deve fornecer suporte e documentação adequados para os usuários.
+**REQ9** - O sistema deve permitir que os usuários escolham entre diferentes tipos de tarefas, como diárias, semanais, mensais, etc.
 
-**REQ10** - O sistema deve permitir que os usuários escolham entre diferentes tipos de tarefas, como diárias, semanais, mensais, etc.
-
-**REQ11** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
+**REQ10** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
