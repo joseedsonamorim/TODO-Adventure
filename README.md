@@ -46,7 +46,6 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
   - Acessar suporte e documentação.
   - Escolher entre diferentes tipos de tarefas.
   - Definir lembretes personalizados para tarefas.
-  - Ganhar distintivos e emblemas por conquistas notáveis.
 
 
 ## Requisitos do projeto
