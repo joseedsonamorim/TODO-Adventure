@@ -32,55 +32,43 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
  4. Quais serviços cada usuário pode executar?
 
    **Usuário não autenticado (visitante):**
- - Visualizar a página inicial e informações gerais do sistema.
- - Criar uma conta de usuário.
+  - Visualizar a página inicial e informações gerais do sistema.
+  - Criar uma conta de usuário.
    
-**Usuário autenticado (aventureiro):**
- - Realizar todas as ações disponíveis para visitantes.
- - Fazer login e logout da conta.
- - Criar, editar e excluir tarefas (Missões) pessoais.
- - Criar jornadas do herói com base nas tarefas.
- - Visualizar seu progresso na jornada e tarefas concluídas.
- - Receber notificações de lembretes e eventos.
- - Personalizar sua jornada com temas e histórias de fundo.
- - Acessar suporte e documentação.
- - Escolher entre diferentes tipos de tarefas.
- - Definir lembretes personalizados para tarefas.
- - Ganhar distintivos e emblemas por conquistas notáveis.
+   **Usuário autenticado (aventureiro):**
+  - Realizar todas as ações disponíveis para visitantes.
+  - Fazer login e logout da conta.
+  - Criar, editar e excluir tarefas (Missões) pessoais.
+  - Criar jornadas do herói com base nas tarefas.
+  - Visualizar seu progresso na jornada e tarefas concluídas.
+  - Receber notificações de lembretes e eventos.
+  - Personalizar sua jornada com temas e histórias de fundo.
+  - Acessar suporte e documentação.
+  - Escolher entre diferentes tipos de tarefas.
+  - Definir lembretes personalizados para tarefas.
+  - Ganhar distintivos e emblemas por conquistas notáveis.
 
 
 ## Requisitos do projeto
 
-**REQ1** - O sistema deve permitir que os usuários se cadastrem, façam login e tenham contas de usuário.
+**REQ1** - Os usuários devem poder criar tarefas(Missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
 
-**REQ2** - Os usuários devem poder criar tarefas(Missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
+**REQ2** - Os usuários devem ser capazes de editar e excluir suas tarefas.
 
-**REQ3** - Os usuários devem ser capazes de editar e excluir suas tarefas.
+**REQ3** - Os usuários devem poder criar jornadas do herói, agrupando tarefas relacionadas.
 
-**REQ4** - O sistema deve atribuir automaticamente pontos de experiência (XP) ao usuário com base no nível de dificuldade e na conclusão das tarefas.
+**REQ4** - O sistema deve permitir que os usuários visualizem seu progresso na jornada, incluindo tarefas concluídas e pontos acumulados.
 
-**REQ5** - Os usuários devem poder criar jornadas do herói, agrupando tarefas relacionadas.
+**REQ5** - Os usuários devem receber notificações para lembretes de tarefas e eventos na jornada.
 
-**REQ6** - O sistema deve permitir que os usuários visualizem seu progresso na jornada, incluindo tarefas concluídas e pontos acumulados.
+**REQ6** - O sistema deve ser responsivo, funcionando em dispositivos móveis e desktop.
 
-**REQ7** - Os usuários devem receber notificações para lembretes de tarefas e eventos na jornada.
+**REQ7** - Deve haver um mecanismo de gamificação para recompensar os usuários com itens virtuais ou vantagens conforme eles progridam em suas jornadas.
 
-**REQ8** - O sistema deve oferecer uma interface amigável e atraente com elementos de RPG, como avatares e itens virtuais.
+**REQ8** - Deve haver uma função de recuperação de senha para usuários que esqueçam suas senhas.
 
-**REQ9** - O sistema deve ser responsivo, funcionando em dispositivos móveis e desktop.
+**REQ9** - O sistema deve fornecer suporte e documentação adequados para os usuários.
 
-**REQ10** - Deve haver um mecanismo de gamificação para recompensar os usuários com itens virtuais ou vantagens conforme eles progridam em suas jornadas.
+**REQ10** - O sistema deve permitir que os usuários escolham entre diferentes tipos de tarefas, como diárias, semanais, mensais, etc.
 
-**REQ11** - Deve haver uma função de recuperação de senha para usuários que esqueçam suas senhas.
-
-**REQ12** - O sistema deve permitir a personalização das jornadas com temas e histórias de fundo.
-
-**REQ13** - O sistema deve fornecer suporte e documentação adequados para os usuários.
-
-**REQ14** - O sistema deve permitir que os usuários escolham entre diferentes tipos de tarefas, como diárias, semanais, mensais, etc.
-
-**REQ15** - Deve haver uma opção de modo noturno para a interface.
-
-**REQ16** - Os usuários podem ganhar distintivos ou emblemas especiais por conquistas notáveis.
-
-**REQ17** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
+**REQ11** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
