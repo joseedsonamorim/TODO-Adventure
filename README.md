@@ -51,7 +51,7 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
 
 ## Requisitos do projeto
 
-**REQ1** - Os usuários devem poder criar tarefas(Missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
+**REQ1** - Os usuários devem poder criar tarefas (missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
 
 **REQ2** - Os usuários devem ser capazes de editar e excluir suas tarefas.
 
