@@ -50,22 +50,26 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
 
 ## Requisitos do projeto
 
-**REQ1** - Os usuários devem poder criar tarefas (missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
+# Requisitos Funcionais
 
-**REQ2** - Os usuários devem ser capazes de editar e excluir suas tarefas.
+**REQF1** - Os usuários devem poder criar tarefas (missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
 
-**REQ3** - Os usuários devem poder criar jornadas do herói, agrupando tarefas relacionadas.
+**REQF2** - Os usuários devem ser capazes de editar e excluir suas tarefas.
 
-**REQ4** - O sistema deve permitir que os usuários visualizem seu progresso na jornada, incluindo tarefas concluídas e pontos acumulados.
+**REQF3** - Os usuários devem poder criar jornadas do herói, agrupando tarefas relacionadas.
 
-**REQ5** - Os usuários devem receber notificações para lembretes de tarefas e eventos na jornada.
+**REQF4** - O sistema deve permitir que os usuários visualizem seu progresso na jornada, incluindo tarefas concluídas e pontos acumulados.
 
-**REQ6** - O sistema deve ser responsivo, funcionando em dispositivos móveis e desktop.
+**REQF5** - Os usuários devem receber notificações para lembretes de tarefas e eventos na jornada.
 
-**REQ7** - Deve haver uma função de recuperação de senha para usuários que esqueçam suas senhas.
+**REQF6** - Deve haver uma função de recuperação de senha para usuários que esqueçam suas senhas.
 
-**REQ8** - O sistema deve fornecer suporte e documentação adequados para os usuários.
+**REQF7** - O sistema deve permitir que os usuários escolham entre diferentes tipos de tarefas, como diárias, semanais, mensais, etc.
 
-**REQ9** - O sistema deve permitir que os usuários escolham entre diferentes tipos de tarefas, como diárias, semanais, mensais, etc.
+**REQF8** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
 
-**REQ10** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
+# Requisitos Não Funcionais
+
+**REQNF1** - O sistema deve ser responsivo, funcionando em dispositivos móveis e desktop.
+
+**REQNF2** - O sistema deve fornecer suporte e documentação adequados para os usuários.
