@@ -50,7 +50,7 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
 
 ## Requisitos do projeto
 
-# Requisitos Funcionais
+### Requisitos Funcionais
 
 **REQF1** - Os usuários devem poder criar tarefas (missões) com os seguintes detalhes: título, descrição, prazo e nível de dificuldade.
 
@@ -68,7 +68,7 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
 
 **REQF8** - Deve haver um mecanismo de feedback dos usuários para melhorias contínuas do sistema.
 
-# Requisitos Não Funcionais
+### Requisitos Não Funcionais
 
 **REQNF1** - O sistema deve ser responsivo, funcionando em dispositivos móveis e desktop.
 
