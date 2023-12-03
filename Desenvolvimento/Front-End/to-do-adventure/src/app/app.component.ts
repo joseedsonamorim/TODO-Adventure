@@ -13,7 +13,21 @@ export class AppComponent {
 
   done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
 
-  drop(event: CdkDragDrop<string[]>) {
+  todoObjects = this.todo.map(item => ({
+    title: item,
+    description: `Description for ${item}`,
+    prazo: '19/12/2023',
+    difficulty: 'easy'
+  }));
+
+   doneObjects = this.done.map(item => ({
+    title: item,
+    description: `Description for ${item}`,
+    prazo: '19/12/2023',
+    difficulty: 'medium'
+  }));
+
+  drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
