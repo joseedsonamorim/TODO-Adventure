@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {MatDialog} from '@angular/material/dialog';
+import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -35,6 +37,8 @@ export class AppComponent {
     difficulty: 'medium'
   }));
 
+  constructor(public dialog: MatDialog) {}
+
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -46,5 +50,14 @@ export class AppComponent {
         event.currentIndex,
       );
     }
+  }
+
+  openCreatNewMission(){
+    const dialogRef = this.dialog.open( DialogFormMissionComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+
   }
 }

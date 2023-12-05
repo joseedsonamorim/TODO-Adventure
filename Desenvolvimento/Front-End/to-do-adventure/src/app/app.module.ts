@@ -10,12 +10,15 @@ import { MatButtonModule } from '@angular/material/button';
 import { DragDropModule } from '@angular/cdk/drag-drop'
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DialogFormMissionComponent
   ],
+  entryComponents:[DialogFormMissionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
