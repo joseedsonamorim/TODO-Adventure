@@ -27,7 +27,16 @@
           (cdkDropListDropped)="drop($event)">
           <div class="example-box" *ngFor="let item of todoObjects" cdkDrag>
             <div class="container">
-              <h4>{{item.title}}</h4><br>
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h4>{{item.title}}</h4><br>
+                <div>
+                  <button mat-icon-button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                  </button> <button mat-icon-button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
                 <h5>Prazo: {{item.prazo}}</h5>
@@ -55,7 +64,16 @@
           (cdkDropListDropped)="drop($event)">
           <div class="example-box" *ngFor="let item of doneObjects" cdkDrag>
             <div class="container">
-              <h4>{{item.title}}</h4><br>
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h4>{{item.title}}</h4><br>
+                <div>
+                  <button mat-icon-button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                  </button> <button mat-icon-button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
                 <h5>Prazo: {{item.prazo}}</h5>
@@ -81,7 +99,16 @@
           (cdkDropListDropped)="drop($event)">
           <div class="example-box" *ngFor="let item of doneObjects2" cdkDrag>
             <div class="container">
-              <h4>{{item.title}}</h4><br>
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h4>{{item.title}}</h4><br>
+                <div>
+                  <button mat-icon-button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                  </button> <button mat-icon-button>
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
                 <h5>Prazo: {{item.prazo}}</h5>
