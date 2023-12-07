@@ -1,9 +1,11 @@
 from flask import Flask, request, jsonify
 import json
 import os
+from flask_cors import CORS 
 
 app = Flask(__name__)
-db_file = 'tasks.txt'
+CORS(app)
+db_file = 'db.json'
 
 def load_db():
     if os.path.exists(db_file):
@@ -20,6 +22,11 @@ def save_db(tasks):
 @app.route('/', methods=['GET'])
 def teste():
     return jsonify({'message' : 'funciona'})
+
+@app.route('/task', methods=['GET'])
+def get_tasks():
+    tasks = load_db()
+    return jsonify(tasks)
 
 @app.route('/task', methods=['POST'])
 def criar_task():
