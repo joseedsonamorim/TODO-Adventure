@@ -1,23 +1,39 @@
+<!-- Importa a fonte Aclonica do Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&display=swap">
 
+<!-- Cabeçalho -->
+<div class="header-container">
+  <!-- Logo -->
+  <img class="logo" height="100px" width="200px" src="../assets/img/toDoAdventureLogo.png">
 
+  <!-- Informações do Usuário -->
+  <div class="user-info">
+    <!-- Ícone de Usuário -->
+    <mat-icon class="user-icon">account_circle</mat-icon>
 
+    <!-- Saudação -->
+    <span class="greeting">Olá, usuário!</span>
+  </div>
 
-<div style="padding-top: 10px; padding-left: 30px; padding-right: 30px;">
-  <mat-card>
-      <img height="50px" width="360px" style="padding-top:30px ;" src="../assets/img/toDoAdventureLogo.png">
-    <mat-card-actions align="end">
-      <button mat-raised-button color="primary" (click)="openCreatNewMission()">NEW MISSION</button>
-    </mat-card-actions>
-</mat-card>
+  <!-- Barra de Pesquisa -->
+  <mat-form-field class="search-bar">
+    <input matInput placeholder="Pesquisar">
+  </mat-form-field>
+
+  <!-- Botão NEW MISSION -->
+  <!-- <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="openCreatNewMission()">NEW MISSION</button>
+  </mat-card-actions> -->
 </div>
 
+<!-- Contêiner de Cards -->
+<div class="card-container">
+  <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 50px; padding-bottom: 50px;">
 
-  <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 50px;">
-
+    <!-- Card de Tarefas Disponíveis -->
     <mat-card>
       <div class="example-container">
-        <h2>To do</h2>
-
+        <h2>Tarefas Disponíveis</h2>
         <div
           cdkDropList
           #todoList="cdkDropList"
@@ -32,7 +48,8 @@
                 <div>
                   <button mat-icon-button>
                     <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
-                  </button> <button mat-icon-button>
+                  </button>
+                  <button mat-icon-button>
                     <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
                   </button>
                 </div>
@@ -43,18 +60,15 @@
               </div>
               <p>{{item.description}}</p>
             </div>
-
-
           </div>
         </div>
       </div>
-
     </mat-card>
 
+    <!-- Card de Tarefas em Andamento -->
     <mat-card>
       <div class="example-container">
-        <h2>Done</h2>
-
+        <h2>Em andamento</h2>
         <div
           cdkDropList
           #doneList="cdkDropList"
@@ -69,7 +83,8 @@
                 <div>
                   <button mat-icon-button>
                     <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
-                  </button> <button mat-icon-button>
+                  </button>
+                  <button mat-icon-button>
                     <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
                   </button>
                 </div>
@@ -83,13 +98,12 @@
           </div>
         </div>
       </div>
-
     </mat-card>
 
+    <!-- Card de Tarefas Concluídas -->
     <mat-card>
       <div class="example-container">
-        <h2>Done2</h2>
-
+        <h2>Concluídas</h2>
         <div
           cdkDropList
           #doneList2="cdkDropList"
@@ -104,7 +118,8 @@
                 <div>
                   <button mat-icon-button>
                     <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
-                  </button> <button mat-icon-button>
+                  </button>
+                  <button mat-icon-button>
                     <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
                   </button>
                 </div>
@@ -118,14 +133,19 @@
           </div>
         </div>
       </div>
-
     </mat-card>
   </div>
+</div>
 
-
-
-
-
-
-
+<!-- Rodapé -->
+<div class="footer-container">
+  <div class="create-task">
+    <div class="circle">
+      <!-- Ícone de Adição -->
+      <mat-icon class="plus-icon">add</mat-icon>
+    </div>
+    <!-- Texto "Criar Tarefa" -->
+    <span class="task-text">Criar Tarefa</span>
+  </div>
+</div>
 
