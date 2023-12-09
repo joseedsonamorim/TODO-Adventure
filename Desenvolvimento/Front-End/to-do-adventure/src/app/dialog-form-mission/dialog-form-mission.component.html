@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>Criar Tarefa</h2>
+<h2 mat-dialog-title>{{label}} Tarefa</h2>
 <mat-dialog-content class="mat-typography">
   <form class="example-form">
     <table class="example-full-width" cellspacing="0"><tr>
@@ -8,7 +8,7 @@
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Prazo</mat-label>
-        <input type="date" matInput value="{{mission?.deadline}}">
+        <input type="date" matInput value="{{deadline}}">
       </mat-form-field></td>
     </tr></table>
 
@@ -33,5 +33,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{labelButton}}</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{label}}</button>
 </mat-dialog-actions>
