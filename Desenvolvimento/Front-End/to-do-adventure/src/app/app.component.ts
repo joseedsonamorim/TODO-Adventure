@@ -19,22 +19,22 @@ export class AppComponent {
   todoObjects = this.disponiveis.map(item => ({
     title: item,
     description: `Description for ${item}`,
-    prazo: '19/12/2023',
-    difficulty: 'easy'
+    deadline: '19/12/2023',
+    difficulty: 'Fácil'
   }));
 
    doneObjects = this.andamento.map(item => ({
     title: item,
     description: `Description for ${item}`,
-    prazo: '19/12/2023',
-    difficulty: 'medium'
+    deadline: '19/12/2023',
+    difficulty: 'Média'
   }));
 
   doneObjects2 = this.concluidas.map(item => ({
     title: item,
     description: `Description for ${item}`,
-    prazo: '19/12/2023',
-    difficulty: 'medium'
+    deadline: '19/12/2023',
+    difficulty: 'Média'
   }));
 
   constructor(public dialog: MatDialog) {}
@@ -52,8 +52,8 @@ export class AppComponent {
     }
   }
 
-  openCreatNewMission(){
-    const dialogRef = this.dialog.open( DialogFormMissionComponent);
+  openDialogMission(data: any){
+    const dialogRef = this.dialog.open(DialogFormMissionComponent, {data});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
