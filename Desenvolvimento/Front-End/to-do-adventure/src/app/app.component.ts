@@ -1,6 +1,6 @@
 import { AppService } from './service/app.service';
 import { Component } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 @Component({
@@ -9,34 +9,16 @@ import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mi
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'to-do-adventure';
+  missions: any;
 
-  disponiveis = ['Escovar os dentes', 'Usar fio dental', 'Fazer SkinCare'];
+  missoesDisponiveis: any;
+  missoesEmAndamento: any;
+  missoesConcluidas: any;
 
-  andamento = ['Escovar os dentes'];
+  statusOK: boolean = false;
 
-  concluidas = ['Escovar os dentes', 'Escovar os dentes'];
+  item: any;
 
-  todoObjects = this.disponiveis.map(item => ({
-    title: item,
-    description: `Description for ${item}`,
-    deadline: '19/12/2023',
-    difficulty: 'Fácil'
-  }));
-
-   doneObjects = this.andamento.map(item => ({
-    title: item,
-    description: `Description for ${item}`,
-    deadline: '19/12/2023',
-    difficulty: 'Média'
-  }));
-
-  doneObjects2 = this.concluidas.map(item => ({
-    title: item,
-    description: `Description for ${item}`,
-    deadline: '19/12/2023',
-    difficulty: 'Média'
-  }));
 
   constructor(
     public dialog: MatDialog,
@@ -45,19 +27,36 @@ export class AppComponent {
 
     ngOnInit(){
       this.getMissions();
+      // this.updateTask();
+      // this.getMissions();
     }
 
-  drop(event: CdkDragDrop<any[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
+    drop(event: CdkDragDrop<any[]>, newList: string) {
+      if (event.previousContainer === event.container) {
+        // Se o item for movido dentro da mesma lista, não faz nada
+        return;
+      }
+
+      // Obtenha o item que foi movido
+      const movedItem = event.previousContainer.data[event.previousIndex];
+
+      // Chame o método para atualizar o status
+      this.updateTask(newList, movedItem.id);
     }
+
+  getItemDrag(item: any){
+    console.log(item);
+
+  }
+
+  evenPredicate(item: CdkDrag<any>) {
+    console.log(item.data);
+    this.item = item.data
+
+    // this.updateTask(item.data);
+
+
+    return true
   }
 
   openDialogMission(data: any){
@@ -69,9 +68,14 @@ export class AppComponent {
 
   }
 
-  getMissions(){
+  getMissions() {
     this.appService.getMissions().subscribe(
-      data => this.missions = data.missions,
+      data => {
+        this.missions = data;
+        this.missoesDisponiveis = this.missions.disponiveis;
+        this.missoesConcluidas = this.missions.concluidas;
+        this.missoesEmAndamento = this.missions.emAndamento;
+      },
       error => console.error('Erro ao obter missões', error)
     );
   }
@@ -90,16 +94,21 @@ export class AppComponent {
     });
   }
 
-  updateTask() {
-    const taskId = '1'; // Substitua pelo ID da tarefa que você deseja atualizar
+  updateTask(status?:any , id?:number) {
+    // const taskId = item.id; // Substitua pelo ID da tarefa que você deseja atualizar
+    // const updatedTask = {
+    //   title: item.title,
+    //   description: item.description,
+    //   deadline: item.deadline,
+    //   status: item.status,
+    //   difficulty: item.difficulty
+    // };
+
     const updatedTask = {
-      title: 'Tarefa Atualizada',
-      description: 'Descrição Atualizada',
-      deadline: '2023-12-31',
-      difficulty: 'Alta'
+      status: status,
     };
 
-    this.appService.updateTask(taskId, updatedTask).subscribe(response => {
+    this.appService.updateTask(id, updatedTask).subscribe(response => {
       console.log(response);
       this.reloadTasks();
     });

@@ -36,12 +36,13 @@
         <h2>Tarefas Disponíveis</h2>
         <div
           cdkDropList
-          #todoList="cdkDropList"
-          [cdkDropListData]="todoObjects"
-          [cdkDropListConnectedTo]="[doneList, doneList2]"
+          #disponiveis="cdkDropList"
+          [cdkDropListData]="missoesDisponiveis"
+          [cdkDropListConnectedTo]="[emAndamento, concluidas]"
           class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of todoObjects" cdkDrag>
+          (cdkDropListDropped)="drop($event , 'disponivel')"
+          [cdkDropListEnterPredicate]="evenPredicate">
+          <div class="example-box" *ngFor="let item of missoesDisponiveis" cdkDrag [cdkDragData]="item">
             <div class="container">
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <h4>{{item.title}}</h4><br>
@@ -68,15 +69,17 @@
     <!-- Card de Tarefas em Andamento -->
     <mat-card>
       <div class="example-container">
-        <h2>Em andamento</h2>
+        <h2>Done2</h2>
+
         <div
           cdkDropList
-          #doneList="cdkDropList"
-          [cdkDropListData]="doneObjects"
-          [cdkDropListConnectedTo]="[todoList, doneList2]"
+          #concluidas="cdkDropList"
+          [cdkDropListData]="missoesEmAndamento"
+          [cdkDropListConnectedTo]="[emAndamento, disponiveis]"
           class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of doneObjects" cdkDrag>
+          (cdkDropListDropped)="drop($event, 'concluidas')"
+          [cdkDropListEnterPredicate]="evenPredicate">
+          <div class="example-box" *ngFor="let item of missoesEmAndamento" cdkDrag [cdkDragData]="item">
             <div class="container">
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <h4>{{item.title}}</h4><br>
@@ -100,19 +103,22 @@
       </div>
     </mat-card>
 
-    <!-- Card de Tarefas Concluídas -->
+
     <mat-card>
       <div class="example-container">
-        <h2>Concluídas</h2>
+        <h2>Done</h2>
+
         <div
           cdkDropList
-          #doneList2="cdkDropList"
-          [cdkDropListData]="doneObjects2"
-          [cdkDropListConnectedTo]="[todoList, doneList]"
+          #emAndamento="cdkDropList"
+          [cdkDropListData]="missoesConcluidas"
+          [cdkDropListConnectedTo]="[concluidas, disponiveis]"
           class="example-list"
-          (cdkDropListDropped)="drop($event)">
-          <div class="example-box" *ngFor="let item of doneObjects2" cdkDrag>
-            <div class="container">
+          (cdkDropListDropped)="drop($event, 'emAndamento')"
+          [cdkDropListEnterPredicate]="evenPredicate"
+          >
+          <div class="example-box" *ngFor="let item of missoesConcluidas" cdkDrag [cdkDragData]="item">
+            <div class="container" >
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <h4>{{item.title}}</h4><br>
                 <div>

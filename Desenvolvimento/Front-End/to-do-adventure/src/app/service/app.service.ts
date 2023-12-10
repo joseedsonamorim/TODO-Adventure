@@ -19,7 +19,7 @@ export class AppService {
     return this.http.post(this.apiUrl, data);
   }
 
-  updateTask(id: string, data: any): Observable<any> {
+  updateTask(id?: number, data?: any): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.put(url, data);
   }
