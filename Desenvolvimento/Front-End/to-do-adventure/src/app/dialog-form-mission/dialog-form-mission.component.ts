@@ -67,7 +67,6 @@ export class DialogFormMissionComponent implements OnInit {
     this.appService.updateTask(this.mission.id, this.mission).subscribe(
       mensagem => {
         console.log(mensagem);
-        this.reloadTasks();
       },
       erro => {
         console.error('Erro ao criar a tarefa', erro);

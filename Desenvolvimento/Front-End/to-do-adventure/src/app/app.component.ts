@@ -50,7 +50,8 @@ export class AppComponent {
           event.currentIndex,
         );
       }
-      const movedItem = {...event.previousContainer.data[event.previousIndex],
+
+      const movedItem = {...event.container.data[event.currentIndex],
         status: newList,
       };
       this.updateTask(movedItem);
