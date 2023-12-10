@@ -61,16 +61,16 @@ export class AppComponent {
     let dialogRef
     if(isDelete){
       dialogRef = this.dialog.open( DialogWarningsComponent, {data});
-      return
-    }
-
-    dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
-
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
+      dialogRef.afterClosed().subscribe(result => {
+        this.getMissions();
+      });
+    } else {
+      dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
+      dialogRef.afterClosed().subscribe(result => {
+      this.getMissions();
     });
 
+    }
   }
 
   getMissions() {

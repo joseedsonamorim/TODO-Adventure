@@ -26,7 +26,6 @@ export class DialogWarningsComponent implements OnInit {
     this.appService.deleteTask(this.mission.id).subscribe(
       message => {
       console.log(message);
-      this.reloadTasks();
 
       },
       erro =>{

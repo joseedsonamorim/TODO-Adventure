@@ -74,6 +74,6 @@ export class DialogFormMissionComponent implements OnInit {
   }
 
   private reloadTasks() {
-    location.reload();
+    // location.reload();
   }
 }
