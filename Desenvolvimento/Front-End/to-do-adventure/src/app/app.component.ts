@@ -3,12 +3,19 @@ import { Component } from '@angular/core';
 import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {MatDialog} from '@angular/material/dialog';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
+import Mission from './shared/models/mission-model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  mission: Mission = {
+    'title': '',
+    'difficulty': '',
+    'description': '',
+    'deadline': ''
+  };
   missions: any;
 
   missoesDisponiveis: any;

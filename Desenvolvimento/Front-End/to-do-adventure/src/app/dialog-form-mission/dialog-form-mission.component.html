@@ -4,24 +4,24 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Título</mat-label>
-        <input matInput value="{{mission?.title}}">
+        <input matInput  [(ngModel)]="mission.title" value="{{mission?.title}}" [ngModelOptions]="{standalone: true}">
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Prazo</mat-label>
-        <input type="date" matInput value="{{deadline}}">
+        <input type="date" matInput [(ngModel)]="mission.deadline" value="{{deadline}}" [ngModelOptions]="{standalone: true}">
       </mat-form-field></td>
     </tr></table>
 
     <p>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Descrição</mat-label>
-        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" value="{{mission?.description}}"></textarea>
+        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" value="{{mission?.description}}" [ngModelOptions]="{standalone: true}"></textarea>
       </mat-form-field>
     </p>
 
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Dificuldade</mat-label>
-      <mat-select [(value)]="selectedDifficulty">
+      <mat-select [(ngModel)]="mission.difficulty" [(value)]="selectedDifficulty" [ngModelOptions]="{standalone: true}">
         <mat-option value="Fácil">Fácil</mat-option>
         <mat-option value="Média">Média</mat-option>
         <mat-option value="Difícil">Difícil</mat-option>
@@ -33,5 +33,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancelar</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{label}}</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="criarOuSalvar()">{{label}}</button>
 </mat-dialog-actions>

@@ -15,6 +15,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatCardModule,
     MatSelectModule,
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
