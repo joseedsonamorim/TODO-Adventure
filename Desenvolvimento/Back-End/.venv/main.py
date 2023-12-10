@@ -6,7 +6,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 CORS(app)
-db_file = 'db.json'
+db_file = '../db.json'
 
 def load_db():
     if os.path.exists(db_file):

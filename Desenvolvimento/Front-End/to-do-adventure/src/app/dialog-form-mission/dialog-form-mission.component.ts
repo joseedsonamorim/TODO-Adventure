@@ -2,6 +2,7 @@ import { AppService } from './../service/app.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import Mission from '../shared/models/mission-model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-dialog-form-mission',
   templateUrl: './dialog-form-mission.component.html',
@@ -17,6 +18,7 @@ export class DialogFormMissionComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private _snackBar: MatSnackBar,
     public appService: AppService
     ) {
       this.mission = data;
@@ -51,11 +53,9 @@ export class DialogFormMissionComponent implements OnInit {
 
 
   postNewMission(){
-    console.log(this.mission);
     this.appService.createTask(this.mission).subscribe(
       mensagem => {
-        console.log(mensagem);
-        this.reloadTasks();
+        this.openSnackBar(mensagem.message);
       },
       erro => {
         console.error('Erro ao criar a tarefa', erro);
@@ -66,14 +66,16 @@ export class DialogFormMissionComponent implements OnInit {
   editarMissao(){
     this.appService.updateTask(this.mission.id, this.mission).subscribe(
       mensagem => {
-        console.log(mensagem);
+        this.openSnackBar(mensagem.message);
       },
       erro => {
         console.error('Erro ao criar a tarefa', erro);
       });
   }
 
-  private reloadTasks() {
-    // location.reload();
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "ok", {
+      duration: 3000, horizontalPosition: 'center',
+      verticalPosition: 'top',});
   }
 }

@@ -35,8 +35,6 @@ export class AppComponent {
 
     ngOnInit(){
       this.getMissions();
-      // this.updateTask();
-      // this.getMissions();
     }
 
     drop(event: CdkDragDrop<any[]>, newList: string) {
@@ -94,14 +92,12 @@ export class AppComponent {
     };
 
     this.appService.createTask(newTask).subscribe(response => {
-      console.log(response);
       this.reloadTasks();
     });
   }
 
   updateTask(mission: Mission) {
     this.appService.updateTask(mission.id, mission).subscribe(response => {
-      console.log(response);
       this.reloadTasks();
     });
   }

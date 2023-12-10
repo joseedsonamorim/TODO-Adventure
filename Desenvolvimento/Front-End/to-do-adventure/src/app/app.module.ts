@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
-
 import { AppRoutingModule } from './app-routing.module';
+
+
 import { AppComponent } from './app.component';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,7 +17,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -39,7 +40,8 @@ import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.compo
     MatSelectModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
