@@ -40,8 +40,7 @@
           [cdkDropListData]="missoesDisponiveis"
           [cdkDropListConnectedTo]="[emAndamento, concluidas]"
           class="example-list"
-          (cdkDropListDropped)="drop($event , 'disponivel')"
-          [cdkDropListEnterPredicate]="evenPredicate">
+          (cdkDropListDropped)="drop($event , 'disponiveis')">
           <div class="example-box" *ngFor="let item of missoesDisponiveis" cdkDrag [cdkDragData]="item">
             <div class="container">
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -69,7 +68,7 @@
     <!-- Card de Tarefas em Andamento -->
     <mat-card>
       <div class="example-container">
-        <h2>Done2</h2>
+        <h2>Em Andamento</h2>
 
         <div
           cdkDropList
@@ -77,8 +76,7 @@
           [cdkDropListData]="missoesEmAndamento"
           [cdkDropListConnectedTo]="[emAndamento, disponiveis]"
           class="example-list"
-          (cdkDropListDropped)="drop($event, 'concluidas')"
-          [cdkDropListEnterPredicate]="evenPredicate">
+          (cdkDropListDropped)="drop($event, 'emAndamento')">
           <div class="example-box" *ngFor="let item of missoesEmAndamento" cdkDrag [cdkDragData]="item">
             <div class="container">
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -106,7 +104,7 @@
 
     <mat-card>
       <div class="example-container">
-        <h2>Done</h2>
+        <h2>Concluídas</h2>
 
         <div
           cdkDropList
@@ -114,9 +112,7 @@
           [cdkDropListData]="missoesConcluidas"
           [cdkDropListConnectedTo]="[concluidas, disponiveis]"
           class="example-list"
-          (cdkDropListDropped)="drop($event, 'emAndamento')"
-          [cdkDropListEnterPredicate]="evenPredicate"
-          >
+          (cdkDropListDropped)="drop($event, 'concluidas')">
           <div class="example-box" *ngFor="let item of missoesConcluidas" cdkDrag [cdkDragData]="item">
             <div class="container" >
               <div style="display: flex; flex-direction: row; justify-content: space-between;">

@@ -53,7 +53,7 @@ def criar_task():
     tasks = initialize_tasks()
     data = request.get_json()
     id = str(max(map(lambda x: int(x['id']), tasks.get('disponiveis', [])), default=0) + 1) if tasks.get('disponiveis') else '1'
-    tasks['disponiveis'].append({'id': id, **data, 'status': 'disponível'})
+    tasks['disponiveis'].append({'id': id, **data, 'status': 'disponiveis'})
     save_db(tasks)
     return jsonify({'message': 'Tarefa criada com sucesso!', 'id': id})
 

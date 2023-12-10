@@ -19,9 +19,9 @@ export class AppComponent {
   };
   missions: any;
 
-  missoesDisponiveis: any;
-  missoesEmAndamento: any;
-  missoesConcluidas: any;
+  missoesDisponiveis: any = [];
+  missoesEmAndamento: any = [];
+  missoesConcluidas: any = [];
 
   statusOK: boolean = false;
 
@@ -41,31 +41,20 @@ export class AppComponent {
 
     drop(event: CdkDragDrop<any[]>, newList: string) {
       if (event.previousContainer === event.container) {
-        // Se o item for movido dentro da mesma lista, não faz nada
-        return;
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
       }
-
-      // Obtenha o item que foi movido
-      const movedItem = event.previousContainer.data[event.previousIndex];
-
-      // Chame o método para atualizar o status
-      this.updateTask(newList, movedItem.id);
+      const movedItem = {...event.previousContainer.data[event.previousIndex],
+        status: newList,
+      };
+      this.updateTask(movedItem);
     }
-
-  getItemDrag(item: any){
-    console.log(item);
-
-  }
-
-  evenPredicate(item: CdkDrag<any>) {
-    console.log(item.data);
-    this.item = item.data
-
-    // this.updateTask(item.data);
-
-
-    return true
-  }
 
   openDialogMission(data: any, isDelete?: boolean){
     let dialogRef
@@ -109,21 +98,8 @@ export class AppComponent {
     });
   }
 
-  updateTask(status?:any , id?:number) {
-    // const taskId = item.id; // Substitua pelo ID da tarefa que você deseja atualizar
-    // const updatedTask = {
-    //   title: item.title,
-    //   description: item.description,
-    //   deadline: item.deadline,
-    //   status: item.status,
-    //   difficulty: item.difficulty
-    // };
-
-    const updatedTask = {
-      status: status,
-    };
-
-    this.appService.updateTask(id, updatedTask).subscribe(response => {
+  updateTask(mission: Mission) {
+    this.appService.updateTask(mission.id, mission).subscribe(response => {
       console.log(response);
       this.reloadTasks();
     });
