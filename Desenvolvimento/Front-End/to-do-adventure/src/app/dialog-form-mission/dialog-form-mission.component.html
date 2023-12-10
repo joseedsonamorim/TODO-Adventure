@@ -1,30 +1,30 @@
-<h2 mat-dialog-title>Create mission</h2>
+<h2 mat-dialog-title>{{label}} Tarefa</h2>
 <mat-dialog-content class="mat-typography">
   <form class="example-form">
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Títle</mat-label>
-        <input matInput>
+        <mat-label>Título</mat-label>
+        <input matInput value="{{mission?.title}}">
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Deadline</mat-label>
-        <input type="date" matInput>
+        <mat-label>Prazo</mat-label>
+        <input type="date" matInput value="{{deadline}}">
       </mat-form-field></td>
     </tr></table>
 
     <p>
       <mat-form-field class="example-full-width" appearance="outline">
-        <mat-label>Description</mat-label>
-        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest"></textarea>
+        <mat-label>Descrição</mat-label>
+        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" value="{{mission?.description}}"></textarea>
       </mat-form-field>
     </p>
 
     <mat-form-field class="example-full-width" appearance="outline">
-      <mat-label>Difficulty</mat-label>
-      <mat-select>
-        <mat-option value="one">Easy</mat-option>
-        <mat-option value="two">Medium</mat-option>
-        <mat-option value="three">Hard</mat-option>
+      <mat-label>Dificuldade</mat-label>
+      <mat-select [(value)]="selectedDifficulty">
+        <mat-option value="Fácil">Fácil</mat-option>
+        <mat-option value="Média">Média</mat-option>
+        <mat-option value="Difícil">Difícil</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -32,6 +32,6 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Create</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>{{label}}</button>
 </mat-dialog-actions>

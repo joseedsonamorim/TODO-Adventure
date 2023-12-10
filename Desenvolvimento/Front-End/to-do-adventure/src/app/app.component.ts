@@ -11,33 +11,31 @@ import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mi
 export class AppComponent {
   title = 'to-do-adventure';
 
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
+  disponiveis = ['Escovar os dentes', 'Usar fio dental', 'Fazer SkinCare'];
 
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  andamento = ['Escovar os dentes'];
 
-  done2 = ['Get up2', 'Brush teeth2', 'Take a shower2', 'Check e-mai2l', 'Walk dog2'];
+  concluidas = ['Escovar os dentes', 'Escovar os dentes'];
 
-  missions: any;
-
-  todoObjects = this.todo.map(item => ({
+  todoObjects = this.disponiveis.map(item => ({
     title: item,
     description: `Description for ${item}`,
-    prazo: '19/12/2023',
-    difficulty: 'easy'
+    deadline: '19/12/2023',
+    difficulty: 'Fácil'
   }));
 
-   doneObjects = this.done.map(item => ({
+   doneObjects = this.andamento.map(item => ({
     title: item,
     description: `Description for ${item}`,
-    prazo: '19/12/2023',
-    difficulty: 'medium'
+    deadline: '19/12/2023',
+    difficulty: 'Média'
   }));
 
-  doneObjects2 = this.done2.map(item => ({
+  doneObjects2 = this.concluidas.map(item => ({
     title: item,
     description: `Description for ${item}`,
-    prazo: '19/12/2023',
-    difficulty: 'medium'
+    deadline: '19/12/2023',
+    difficulty: 'Média'
   }));
 
   constructor(
@@ -62,8 +60,8 @@ export class AppComponent {
     }
   }
 
-  openCreatNewMission(){
-    const dialogRef = this.dialog.open( DialogFormMissionComponent);
+  openDialogMission(data: any){
+    const dialogRef = this.dialog.open(DialogFormMissionComponent, {data});
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
