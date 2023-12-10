@@ -46,7 +46,7 @@
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <h4>{{item.title}}</h4><br>
                 <div>
-                  <button mat-icon-button>
+                  <button mat-icon-button (click)="openDialogMission(item)">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
                   </button>
                   <button mat-icon-button>
@@ -56,7 +56,7 @@
               </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
-                <h5>Prazo: {{item.prazo}}</h5>
+                <h5>Prazo: {{item.deadline}}</h5>
               </div>
               <p>{{item.description}}</p>
             </div>
@@ -81,7 +81,7 @@
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <h4>{{item.title}}</h4><br>
                 <div>
-                  <button mat-icon-button>
+                  <button mat-icon-button (click)="openDialogMission(item)">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
                   </button>
                   <button mat-icon-button>
@@ -91,7 +91,7 @@
               </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
-                <h5>Prazo: {{item.prazo}}</h5>
+                <h5>Prazo: {{item.deadline}}</h5>
               </div>
               <p>{{item.description}}</p>
             </div>
@@ -116,7 +116,7 @@
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
                 <h4>{{item.title}}</h4><br>
                 <div>
-                  <button mat-icon-button>
+                  <button mat-icon-button (click)="openDialogMission(item)">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
                   </button>
                   <button mat-icon-button>
@@ -126,7 +126,7 @@
               </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
-                <h5>Prazo: {{item.prazo}}</h5>
+                <h5>Prazo: {{item.deadline}}</h5>
               </div>
               <p>{{item.description}}</p>
             </div>
@@ -142,7 +142,9 @@
   <div class="create-task">
     <div class="circle">
       <!-- Ícone de Adição -->
-      <mat-icon class="plus-icon">add</mat-icon>
+      <button mat-icon-button (click)="openDialogMission(null)">
+        <mat-icon class="plus-icon">add</mat-icon>
+      </button>
     </div>
     <!-- Texto "Criar Tarefa" -->
     <span class="task-text">Criar Tarefa</span>
