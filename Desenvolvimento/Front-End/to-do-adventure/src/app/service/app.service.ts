@@ -24,7 +24,7 @@ export class AppService {
     return this.http.put(url, data);
   }
 
-  deleteTask(id: string): Observable<any> {
+  deleteTask(id?: number): Observable<any> {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url);
   }

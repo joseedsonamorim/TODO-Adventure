@@ -4,6 +4,7 @@ import {CdkDrag, CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular
 import {MatDialog} from '@angular/material/dialog';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 import Mission from './shared/models/mission-model';
+import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -66,8 +67,15 @@ export class AppComponent {
     return true
   }
 
-  openDialogMission(data: any){
-    const dialogRef = this.dialog.open(DialogFormMissionComponent, {data});
+  openDialogMission(data: any, isDelete?: boolean){
+    let dialogRef
+    if(isDelete){
+      dialogRef = this.dialog.open( DialogWarningsComponent, {data});
+      return
+    }
+
+    dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
+
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
@@ -116,15 +124,6 @@ export class AppComponent {
     };
 
     this.appService.updateTask(id, updatedTask).subscribe(response => {
-      console.log(response);
-      this.reloadTasks();
-    });
-  }
-
-  deleteTask() {
-    const taskId = '1'; // Substitua pelo ID da tarefa que você deseja excluir
-
-    this.appService.deleteTask(taskId).subscribe(response => {
       console.log(response);
       this.reloadTasks();
     });

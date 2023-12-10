@@ -16,13 +16,15 @@ import {MatCardModule} from '@angular/material/card';
 import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    DialogFormMissionComponent
+    DialogFormMissionComponent,
+    DialogWarningsComponent
   ],
   entryComponents:[DialogFormMissionComponent],
   imports: [
