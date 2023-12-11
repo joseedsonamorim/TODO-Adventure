@@ -1,0 +1,155 @@
+<!-- Importa a fonte Aclonica do Google Fonts -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&display=swap">
+
+<!-- Cabeçalho -->
+<div class="header-container">
+  <!-- Logo -->
+  <img class="logo" height="100px" width="200px" src="../assets/img/toDoAdventureLogo.png">
+
+  <!-- Informações do Usuário -->
+  <div class="user-info">
+    <!-- Ícone de Usuário -->
+    <mat-icon class="user-icon">account_circle</mat-icon>
+
+    <!-- Saudação -->
+    <span class="greeting">Olá, usuário!</span>
+  </div>
+
+  <!-- Barra de Pesquisa -->
+  <mat-form-field class="search-bar">
+    <input matInput placeholder="Pesquisar">
+  </mat-form-field>
+
+  <!-- Botão NEW MISSION -->
+  <!-- <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="openCreatNewMission()">NEW MISSION</button>
+  </mat-card-actions> -->
+</div>
+
+<!-- Contêiner de Cards -->
+<div class="card-container">
+  <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 50px; padding-bottom: 50px;">
+
+    <!-- Card de Tarefas Disponíveis -->
+    <mat-card>
+      <div class="example-container">
+        <h2>Tarefas Disponíveis</h2>
+        <div
+          cdkDropList
+          #disponiveis="cdkDropList"
+          [cdkDropListData]="missoesDisponiveis"
+          [cdkDropListConnectedTo]="[emAndamento, concluidas]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event , 'disponiveis')">
+          <div class="example-box" *ngFor="let item of missoesDisponiveis" cdkDrag [cdkDragData]="item">
+            <div class="container">
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h4>{{item.title}}</h4><br>
+                <div>
+                  <button mat-icon-button (click)="openDialogMission(item)">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="openDialogMission(item, true)">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="details">
+                <h5>Dificuldade: {{item.difficulty}}</h5>
+                <h5>Prazo: {{item.deadline}}</h5>
+              </div>
+              <p>{{item.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+    <!-- Card de Tarefas em Andamento -->
+    <mat-card>
+      <div class="example-container">
+        <h2>Em Andamento</h2>
+
+        <div
+          cdkDropList
+          #concluidas="cdkDropList"
+          [cdkDropListData]="missoesEmAndamento"
+          [cdkDropListConnectedTo]="[emAndamento, disponiveis]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event, 'emAndamento')">
+          <div class="example-box" *ngFor="let item of missoesEmAndamento" cdkDrag [cdkDragData]="item">
+            <div class="container">
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h4>{{item.title}}</h4><br>
+                <div>
+                  <button mat-icon-button (click)="openDialogMission(item)">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="openDialogMission(item, true)">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="details">
+                <h5>Dificuldade: {{item.difficulty}}</h5>
+                <h5>Prazo: {{item.deadline}}</h5>
+              </div>
+              <p>{{item.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+
+
+    <mat-card>
+      <div class="example-container">
+        <h2>Concluídas</h2>
+
+        <div
+          cdkDropList
+          #emAndamento="cdkDropList"
+          [cdkDropListData]="missoesConcluidas"
+          [cdkDropListConnectedTo]="[concluidas, disponiveis]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event, 'concluidas')">
+          <div class="example-box" *ngFor="let item of missoesConcluidas" cdkDrag [cdkDragData]="item">
+            <div class="container" >
+              <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                <h4>{{item.title}}</h4><br>
+                <div>
+                  <button mat-icon-button (click)="openDialogMission(item)">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                  </button>
+                  <button mat-icon-button (click)="openDialogMission(item, true)">
+                    <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+              <div class="details">
+                <h5>Dificuldade: {{item.difficulty}}</h5>
+                <h5>Prazo: {{item.deadline}}</h5>
+              </div>
+              <p>{{item.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Rodapé -->
+<div class="footer-container">
+  <div class="create-task">
+    <div class="circle">
+      <!-- Ícone de Adição -->
+      <button mat-icon-button (click)="openDialogMission(mission)">
+        <mat-icon class="plus-icon">add</mat-icon>
+      </button>
+    </div>
+    <!-- Texto "Criar Tarefa" -->
+    <span class="task-text">Criar Tarefa</span>
+  </div>
+</div>
+
