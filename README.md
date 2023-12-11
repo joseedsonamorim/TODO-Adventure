@@ -8,7 +8,7 @@
  * Letícia Viana - leticia.paulams@gmail.com
  * Apolo Albuquerque - apolo.vinicius@ufrpe.br
  * Victor de Moraes - victor.cmoraes@ufrpe.br
- * Samuel Bezerra - samuelbmenezes7@gmail.com
+ * Samuel Bezerra de Menezes Júnior - samuelbmenezes7@gmail.com
  * Carlos Augusto Ferreira Freire - carlos.augustof@ufrpe.br
  * Mateus Rodrigo Gomes da Silva - mateusrodrigo9122@gmail.com
  * Gabriel Cavalcanti Marques Brandão - gabrielbrandao.net@gmail.com
