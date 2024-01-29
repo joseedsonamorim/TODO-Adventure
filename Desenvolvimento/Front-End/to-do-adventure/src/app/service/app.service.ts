@@ -7,25 +7,46 @@ import { Observable } from 'rxjs';
 })
 export class AppService {
 
-  private apiUrl = 'http://127.0.0.1:5000/task';  // Substitua pela URL da sua API
+  private urlTask = 'http://127.0.0.1:5000/task';  // Substitua pela URL da sua API
+  private urlJourney = 'http://127.0.0.1:5000/jornadas';  // Substitua pela URL da sua API
 
   constructor(private http: HttpClient) { }
 
   getMissions(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+    return this.http.get<any>(this.urlTask);
   }
 
   createTask(data: any): Observable<any> {
-    return this.http.post(this.apiUrl, data);
+    return this.http.post(this.urlTask, data);
   }
 
   updateTask(id?: number, data?: any): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.urlTask}/${id}`;
     return this.http.put(url, data);
   }
 
   deleteTask(id?: number): Observable<any> {
-    const url = `${this.apiUrl}/${id}`;
+    const url = `${this.urlTask}/${id}`;
+    return this.http.delete(url);
+  }
+
+  //Rotas jornada do héroi
+
+  getJounerys(): Observable<any> {
+    return this.http.get<any>(this.urlJourney);
+  }
+
+  createJourney(data: any): Observable<any> {
+    return this.http.post(this.urlJourney, data);
+  }
+
+  updateJourney(id?: number, data?: any): Observable<any> {
+    const url = `${this.urlJourney}/${id}`;
+    return this.http.put(url, data);
+  }
+
+  deleteJourney(id?: number): Observable<any> {
+    const url = `${this.urlJourney}/${id}`;
     return this.http.delete(url);
   }
 }
