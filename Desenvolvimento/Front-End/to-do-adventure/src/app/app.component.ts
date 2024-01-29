@@ -55,20 +55,34 @@ export class AppComponent {
       this.updateTask(movedItem);
     }
 
-  openDialogMission(data: any, isDelete?: boolean){
+  openDialogMission(data: any, isDelete?: boolean, teste?: string){
     let dialogRef
     if(isDelete){
       dialogRef = this.dialog.open( DialogWarningsComponent, {data});
       dialogRef.afterClosed().subscribe(result => {
         this.getMissions();
       });
-    } else {
-      dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
-      dialogRef.afterClosed().subscribe(result => {
-      this.getMissions();
-    });
-
+      return
     }
+    switch (teste) {
+      case 'tarefa':
+        dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
+        dialogRef.afterClosed().subscribe(result => {
+        this.getMissions();
+        });
+        break;
+      case 'jornada':
+          // dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
+          // dialogRef.afterClosed().subscribe(result => {
+          // this.getMissions();
+          // });
+          console.log('teste');
+
+        break;
+      default:
+        break;
+    }
+
   }
 
   getMissions() {

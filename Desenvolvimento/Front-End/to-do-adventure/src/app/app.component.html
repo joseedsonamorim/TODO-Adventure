@@ -144,12 +144,22 @@
   <div class="create-task">
     <div class="circle">
       <!-- Ícone de Adição -->
-      <button mat-icon-button (click)="openDialogMission(mission)">
-        <mat-icon class="plus-icon">add</mat-icon>
+      <button mat-icon-button (click)="openDialogMission(mission, false, 'tarefa')">
+        <mat-icon class="plus-icon">create</mat-icon>
       </button>
     </div>
     <!-- Texto "Criar Tarefa" -->
     <span class="task-text">Criar Tarefa</span>
+  </div>
+  <div class="create-task">
+    <div class="circle">
+      <!-- Ícone de Adição -->
+      <button mat-icon-button (click)="openDialogMission(mission, false, 'jornada')">
+        <mat-icon class="plus-icon">list</mat-icon>
+      </button>
+    </div>
+    <!-- Texto "Criar Tarefa" -->
+    <span class="task-text">Criar Jornada do Héroi</span>
   </div>
 </div>
 

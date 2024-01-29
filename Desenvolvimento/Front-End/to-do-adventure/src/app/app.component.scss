@@ -132,7 +132,7 @@ mat-card {
 .footer-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 50px 50px;
   background-color: #88F6C8; /* Cor de fundo do cabeçalho */
   color: #2C7F7F; /* Cor do texto */
@@ -141,6 +141,7 @@ mat-card {
 .create-task {
   display: flex;
   align-items: center;
+  margin-right: 25px;
 }
 
 .circle {
