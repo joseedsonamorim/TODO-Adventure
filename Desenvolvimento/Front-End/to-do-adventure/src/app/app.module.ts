@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
+import { DialogHeroJorneyComponent } from './dialog-hero-jorney/dialog-hero-jorney.component';
 
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatExpansionModule} from '@angular/material/expansion'
 
 
 
@@ -25,7 +27,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   declarations: [
     AppComponent,
     DialogFormMissionComponent,
-    DialogWarningsComponent
+    DialogWarningsComponent,
+    DialogHeroJorneyComponent
   ],
   entryComponents:[DialogFormMissionComponent],
   imports: [
@@ -41,7 +44,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatIconModule,
     HttpClientModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

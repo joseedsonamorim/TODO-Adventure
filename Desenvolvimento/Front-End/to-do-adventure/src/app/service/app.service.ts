@@ -36,6 +36,11 @@ export class AppService {
     return this.http.get<any>(this.urlJourney);
   }
 
+  getJourney(jorney?: string): Observable<any> {
+    const url = `${this.urlJourney}/${jorney}`;
+    return this.http.get<any>(url);
+  }
+
   createJourney(data: any): Observable<any> {
     return this.http.post(this.urlJourney, data);
   }

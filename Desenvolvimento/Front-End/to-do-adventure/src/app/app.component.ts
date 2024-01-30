@@ -5,6 +5,7 @@ import {MatDialog} from '@angular/material/dialog';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
 import Mission from './shared/models/mission-model';
 import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
+import { DialogHeroJorneyComponent } from './dialog-hero-jorney/dialog-hero-jorney.component';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -72,17 +73,26 @@ export class AppComponent {
         });
         break;
       case 'jornada':
-          // dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
-          // dialogRef.afterClosed().subscribe(result => {
-          // this.getMissions();
-          // });
-          console.log('teste');
+          dialogRef = this.dialog.open( DialogHeroJorneyComponent);
+          dialogRef.afterClosed().subscribe(result => {
+          // this.getJorneys();
+          });
 
         break;
       default:
         break;
     }
 
+  }
+
+  getJorneys(){
+    this.appService.getJounerys().subscribe(
+      data => {
+        console.log(data);
+
+      },
+      error => console.error('Erro ao obter Jornadas', error)
+    )
   }
 
   getMissions() {
