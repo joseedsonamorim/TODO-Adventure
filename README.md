@@ -31,22 +31,16 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
    
  4. Quais serviços cada usuário pode executar?
 
-   **Usuário não autenticado (visitante):**
-  - Visualizar a página inicial e informações gerais do sistema.
   - Criar uma conta de usuário.
-   
-   **Usuário autenticado (aventureiro):**
-  - Realizar todas as ações disponíveis para visitantes.
   - Fazer login e logout da conta.
   - Criar, editar e excluir tarefas (Missões) pessoais.
   - Criar jornadas do herói com base nas tarefas.
   - Visualizar seu progresso na jornada e tarefas concluídas.
+  - Definir lembretes personalizados para tarefas.
   - Receber notificações de lembretes e eventos.
-  - Personalizar sua jornada com temas e histórias de fundo.
   - Acessar suporte e documentação.
   - Escolher entre diferentes tipos de tarefas.
-  - Definir lembretes personalizados para tarefas.
-
+  - Personalizar sua jornada com temas e histórias de fundo.
 
 ## Requisitos do projeto
 
