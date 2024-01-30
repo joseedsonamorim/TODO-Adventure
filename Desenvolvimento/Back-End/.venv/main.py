@@ -32,9 +32,6 @@ def initialize_tasks():
     tasks = load_db()
     return tasks if isinstance(tasks, dict) else {'disponiveis': [], 'emAndamento': [], 'concluidas': [], 'jornadas': {}}
 
-@app.route('/', methods=['GET'])
-def teste():
-    return jsonify({'message': 'funciona'})
 
 @app.route('/task', methods=['GET'])
 def get_tasks():

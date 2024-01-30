@@ -1,33 +1,94 @@
+<h1 mat-dialog-title>JORNADA DO HÉROI</h1>
+<mat-dialog-content class="mat-typography">
 
-<div *ngFor="let jorney of jorneys">
+  <mat-card>
+    <mat-card-subtitle>Aqui você encontra as jorandas disponiveis</mat-card-subtitle>
+    <mat-accordion [multi]="false">
+    <div *ngFor="let jorney of jorneys let i = index">
 
-  <mat-accordion>
-    <!-- <mat-expansion-panel hideToggle>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          This is the expansion title
-        </mat-panel-title>
-        <mat-panel-description>
-          This is a summary of the content
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <p>This is the primary content of the panel.</p>
-    </mat-expansion-panel> -->
-    <mat-expansion-panel (opened)="panelOpenState = true; openJorney(jorney)"
-                         (closed)="panelOpenState = false">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-         {{jorney}}
-        </mat-panel-title>
-        <mat-panel-description>
-          <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
-        </mat-panel-description>
-      </mat-expansion-panel-header>
+        <mat-expansion-panel (opened)="panelOpenState = true; openJorney(jorney); expandido($event)"
+                             (closed)="panelOpenState = false" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+             {{jorney}}
+            </mat-panel-title>
+            <mat-panel-description>
+              <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          {{panelOpenStates[i]}}
 
-      <p>I'm visible because I am open</p>
-    </mat-expansion-panel>
-  </mat-accordion>
+          <div *ngFor="let task of taskes">
+            <!-- <div class="example-box" *ngFor="let item of missoesEmAndamento" cdkDrag [cdkDragData]="item"> -->
+              <div class="container">
+                <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                  <h4>{{task.title}}</h4><br>
+                  <!-- <div>
+                    <button mat-icon-button (click)="openDialogMission(task)">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="openDialogMission(task, true)">
+                      <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
+                    </button>
+                  </div> -->
+                </div>
+                <div class="details">
+                  <h5>Dificuldade: {{task.difficulty}}</h5>
+                  <h5>Prazo: {{task.deadline}}</h5>
+                </div>
+                <p>{{task.description}}</p>
+              </div>
+            </div>
+          <!-- </div> -->
+        </mat-expansion-panel>
 
-</div>
+      </div>
+    </mat-accordion>
+
+  </mat-card>
+  <div *ngIf="flagNovaJornada" >
+    <form class="example-form">
+      <table class="example-full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Título</mat-label>
+          <input matInput  [(ngModel)]="mission.title" value="{{mission?.title}}" [ngModelOptions]="{standalone: true}">
+        </mat-form-field></td>
+        <td><mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Prazo</mat-label>
+          <input type="date" matInput [(ngModel)]="mission.deadline" value="{{deadline}}" [ngModelOptions]="{standalone: true}">
+        </mat-form-field></td>
+      </tr></table>
+
+      <p>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Descrição</mat-label>
+          <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" value="{{mission?.description}}" [ngModelOptions]="{standalone: true}"></textarea>
+        </mat-form-field>
+      </p>
+
+      <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Dificuldade</mat-label>
+        <mat-select [(ngModel)]="mission.difficulty" [(value)]="selectedDifficulty" [ngModelOptions]="{standalone: true}">
+          <mat-option value="Fácil">Fácil</mat-option>
+          <mat-option value="Média">Média</mat-option>
+          <mat-option value="Difícil">Difícil</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </div>
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button *ngIf="!flagNovaJornada" mat-button mat-dialog-close>Fechar</button>
+  <button mat-button (click)="novaJornada()" cdkFocusInitial>{{actionJornada}}</button>
+</mat-dialog-actions>
+
+
+
+
+
+
+
 
 

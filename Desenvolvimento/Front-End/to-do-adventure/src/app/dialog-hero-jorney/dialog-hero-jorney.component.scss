@@ -1,3 +1,27 @@
 .mat-form-field + .mat-form-field {
   margin-left: 8px;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 366px;
+  background-color: #2C7F7F80;
+  padding: 10px;
+  border-radius: 25px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Adiciona sombra nos itens */
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}

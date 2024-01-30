@@ -42,6 +42,9 @@ export class AppComponent {
       if (event.previousContainer === event.container) {
         moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
       } else {
+        if(newList == 'emAndamento' && this.missoesEmAndamento.length){
+          return;
+        }
         transferArrayItem(
           event.previousContainer.data,
           event.container.data,
@@ -56,7 +59,7 @@ export class AppComponent {
       this.updateTask(movedItem);
     }
 
-  openDialogMission(data: any, isDelete?: boolean, teste?: string){
+  openDialogMission(data: any, isDelete?: boolean, tipoDialog?: string){
     let dialogRef
     if(isDelete){
       dialogRef = this.dialog.open( DialogWarningsComponent, {data});
@@ -65,7 +68,7 @@ export class AppComponent {
       });
       return
     }
-    switch (teste) {
+    switch (tipoDialog) {
       case 'tarefa':
         dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
         dialogRef.afterClosed().subscribe(result => {
@@ -99,9 +102,10 @@ export class AppComponent {
     this.appService.getMissions().subscribe(
       data => {
         this.missions = data;
-        this.missoesDisponiveis = this.missions.disponiveis;
-        this.missoesConcluidas = this.missions.concluidas;
-        this.missoesEmAndamento = this.missions.emAndamento;
+        this.missoesDisponiveis = this.missions.disponiveis ? this.missions.disponiveis : [] ;
+        this.missoesConcluidas = this.missions.concluidas ? this.missions.concluidas : [];
+        this.missoesEmAndamento = this.missions.emAndamento ? this.missions.emAndamento : [];
+
       },
       error => console.error('Erro ao obter missões', error)
     );
