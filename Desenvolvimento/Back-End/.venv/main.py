@@ -160,5 +160,17 @@ def delete_jornada(nome_jornada):
     else:
         return jsonify({'message': f'Jornada {nome_jornada} não encontrada!'}), 404
 
+@app.route('/jornadas/<nome_jornada>', methods=['GET'])
+def get_jornada(nome_jornada):
+    tasks = load_db()
+
+    if 'jornadas' in tasks and nome_jornada in tasks['jornadas']:
+        jornada = tasks['jornadas'][nome_jornada]
+        return jsonify({'jornada': jornada})
+    else:
+        abort(404, {'message': 'Jornada não encontrada!'})
+
+# ...
+
 if __name__ == '__main__':
     app.run(debug=True)
