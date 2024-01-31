@@ -1,5 +1,6 @@
 interface Mission {
   id?: number;
+  nomeDaJornada?: string,
   title: string;
   description: string;
   deadline: string;

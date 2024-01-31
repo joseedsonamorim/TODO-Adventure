@@ -1,6 +1,7 @@
 import {  AppService } from './../service/app.service';
 import { Component, OnInit } from '@angular/core';
 import Mission from '../shared/models/mission-model';
+import { runInThisContext } from 'vm';
 
 @Component({
   selector: 'app-dialog-hero-jorney',
@@ -16,6 +17,7 @@ export class DialogHeroJorneyComponent implements OnInit {
   panelOpenState = false;
   panelOpenStates: boolean[] = [];
   flagNovaJornada: boolean = false;
+  actionAddNovajornada = 'Fechar'
   actionJornada: string = 'Nova Jornada';
   mission: Mission = {
     'title': '',
@@ -23,8 +25,10 @@ export class DialogHeroJorneyComponent implements OnInit {
     'description': '',
     'deadline': ''
   };
+  novaTarefa: any  = null;
   deadline?: string;
   selectedDifficulty: string = "Fácil";
+  tarefaNovaJornada: boolean = true;
 
 
 
@@ -47,19 +51,23 @@ export class DialogHeroJorneyComponent implements OnInit {
     this.appService.getJourney(jorney).subscribe(
       data => {
         this.taskes = data.jornada.tarefas;
-        // console.log(this.taskes);
-
       }
     )
-  }
-  expandido(event: any){
-    console.log(event);
-
   }
 
   novaJornada(){
    this.flagNovaJornada = !this.flagNovaJornada;
    this.actionJornada = this.flagNovaJornada ? 'Cancelar' : 'Nova Jornada';
+   this.actionAddNovajornada = this.flagNovaJornada ? 'Criar Jornada' : 'Fechar';
+  }
+
+  adicionarTarefa(){
+    this.tarefaNovaJornada = !this.tarefaNovaJornada;
+    return this.tarefaNovaJornada;
+  }
+
+  adicionaTarefaNovaJornada(){
+    this.tarefaNovaJornada = true;
   }
 
 }
