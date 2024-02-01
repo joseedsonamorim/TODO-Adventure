@@ -16,9 +16,9 @@
   </div>
 
   <!-- Barra de Pesquisa -->
-  <mat-form-field class="search-bar">
+  <!-- <mat-form-field class="search-bar">
     <input matInput placeholder="Pesquisar">
-  </mat-form-field>
+  </mat-form-field> -->
 
   <!-- Botão NEW MISSION -->
   <!-- <mat-card-actions align="end">
@@ -29,7 +29,6 @@
 <!-- Contêiner de Cards -->
 <div class="card-container">
   <div style="display: flex; flex-direction: row; justify-content: space-evenly; padding-top: 50px; padding-bottom: 50px;">
-
     <!-- Card de Tarefas Disponíveis -->
     <mat-card>
       <div class="example-container">
@@ -37,6 +36,7 @@
         <div
           cdkDropList
           #disponiveis="cdkDropList"
+          id="disponiveis"
           [cdkDropListData]="missoesDisponiveis"
           [cdkDropListConnectedTo]="[emAndamento, concluidas]"
           class="example-list"
@@ -56,7 +56,8 @@
               </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
-                <h5>Prazo: {{item.deadline}}</h5>
+                <h5>Prazo: {{setDeadline(item.deadline)}}</h5>
+                <h5>Tempo Corrido: {{item.runningTime}}</h5>
               </div>
               <p>{{item.description}}</p>
             </div>
@@ -68,13 +69,28 @@
     <!-- Card de Tarefas em Andamento -->
     <mat-card>
       <div class="example-container">
+
         <h2>Em Andamento</h2>
+
+        <div *ngIf="mostrarCronometro">
+          <div class="text-lg font-medium">
+            <span>{{hr}} : </span>
+            <span>{{min}} : </span>
+            <span>{{sec}}</span>
+          </div>
+          <div class="w-full">
+            <button mat-icon-button (click)="startCronometro()">
+              <mat-icon>{{botaoCronometro}}</mat-icon>
+            </button>
+          </div>
+        </div>
 
         <div
           cdkDropList
-          #concluidas="cdkDropList"
+          #emAndamento="cdkDropList"
+          id="emAndamento"
           [cdkDropListData]="missoesEmAndamento"
-          [cdkDropListConnectedTo]="[emAndamento, disponiveis]"
+          [cdkDropListConnectedTo]="[concluidas, disponiveis]"
           class="example-list"
           (cdkDropListDropped)="drop($event, 'emAndamento')">
           <div class="example-box" *ngFor="let item of missoesEmAndamento" cdkDrag [cdkDragData]="item">
@@ -92,7 +108,7 @@
               </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
-                <h5>Prazo: {{item.deadline}}</h5>
+                <h5>Prazo: {{setDeadline(item.deadline)}}</h5>
               </div>
               <p>{{item.description}}</p>
             </div>
@@ -108,9 +124,10 @@
 
         <div
           cdkDropList
-          #emAndamento="cdkDropList"
+          #concluidas="cdkDropList"
+          id="concluidas"
           [cdkDropListData]="missoesConcluidas"
-          [cdkDropListConnectedTo]="[concluidas, disponiveis]"
+          [cdkDropListConnectedTo]="[emAndamento, disponiveis]"
           class="example-list"
           (cdkDropListDropped)="drop($event, 'concluidas')">
           <div class="example-box" *ngFor="let item of missoesConcluidas" cdkDrag [cdkDragData]="item">
@@ -128,7 +145,8 @@
               </div>
               <div class="details">
                 <h5>Dificuldade: {{item.difficulty}}</h5>
-                <h5>Prazo: {{item.deadline}}</h5>
+                <h5>Prazo: {{setDeadline(item.deadline)}}</h5>
+                <h5>Tempo Corrido: {{item.runningTime}}</h5>
               </div>
               <p>{{item.description}}</p>
             </div>
