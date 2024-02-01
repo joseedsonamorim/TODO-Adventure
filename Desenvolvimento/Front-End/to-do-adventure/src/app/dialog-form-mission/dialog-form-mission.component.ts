@@ -25,17 +25,16 @@ export class DialogFormMissionComponent implements OnInit {
       this.isEditar();
    }
 
-  ngOnInit(): void {
-    }
+  ngOnInit(): void { }
 
-    isEditar(){
-      if (this.mission && this.mission.title !== '') {
-        this.selectedDifficulty = this.mission.difficulty;
-        this.label = "Editar";
-        this.flagEditar = true;
-        this.deadline = this.setDeadline(this.mission.deadline);
-      }
+  isEditar(){
+    if (this.mission && this.mission.title !== '') {
+      this.selectedDifficulty = this.mission.difficulty;
+      this.label = "Editar";
+      this.flagEditar = true;
+      this.deadline = this.setDeadline(this.mission.deadline);
     }
+  }
 
   setDeadline(data: string) {
     const array_data = data.split('/');
@@ -50,9 +49,8 @@ export class DialogFormMissionComponent implements OnInit {
     this.postNewMission();
   }
 
-
-
   postNewMission(){
+    this.mission = {...this.mission, runningTime: "00:00:00"}
     this.appService.createTask(this.mission).subscribe(
       mensagem => {
         this.openSnackBar(mensagem.message);

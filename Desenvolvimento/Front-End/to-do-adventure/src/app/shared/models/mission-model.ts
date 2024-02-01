@@ -6,6 +6,7 @@ interface Mission {
   deadline: string;
   difficulty: string;
   status?: string;
+  runningTime?: string;
 }
 
 export default Mission;
