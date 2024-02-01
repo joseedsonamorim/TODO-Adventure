@@ -4,7 +4,7 @@
     <table class="example-full-width" cellspacing="0"><tr>
       <td><mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Título</mat-label>
-        <input matInput  [(ngModel)]="mission.title" value="{{mission?.title}}" [ngModelOptions]="{standalone: true}">
+        <input matInput  [(ngModel)]="mission.title" value="{{mission.title}}" [ngModelOptions]="{standalone: true}">
       </mat-form-field></td>
       <td><mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Prazo</mat-label>
@@ -15,7 +15,7 @@
     <p>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Descrição</mat-label>
-        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" value="{{mission?.description}}" [ngModelOptions]="{standalone: true}"></textarea>
+        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" value="{{mission.description}}" [ngModelOptions]="{standalone: true}"></textarea>
       </mat-form-field>
     </p>
 
