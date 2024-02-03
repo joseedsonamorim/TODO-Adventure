@@ -16,8 +16,7 @@
                 <mat-panel-title>
                  {{jorney}}
                 </mat-panel-title>
-                <mat-panel-description>
-                </mat-panel-description>
+
               </mat-expansion-panel-header>
               {{panelOpenStates[i]}}
 
@@ -33,9 +32,13 @@
                     <p>{{task.description}}</p>
                   </div>
                 </div>
+                <mat-action-row>
+                  <button mat-button color="warn" (click)="selecionaJornada()">Adicionar Jornada</button>
+                </mat-action-row>
             </mat-expansion-panel>
 
           </div>
+
         </mat-accordion>
 
       </mat-card>
@@ -45,11 +48,11 @@
         <h1> Nova Jornada</h1>
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>Nome da Jornada</mat-label>
-          <input matInput  [(ngModel)]="mission.title" value="{{mission?.nomeDaJornada}}" [ngModelOptions]="{standalone: true}">
+          <input matInput  [(ngModel)]="nomeJornada" value="{{mission?.nomeDaJornada}}" [ngModelOptions]="{standalone: true}">
         </mat-form-field>
         <div *ngIf="novaTarefa">
           <div *ngFor="let item of novaTarefa">
-            <span>{{item.title}}</span>
+            <span>{{item}}</span>
           </div>
         </div>
         <div style="display: flex;flex-direction: row ;justify-content: flex-end; padding-bottom: 5px;">
@@ -60,7 +63,7 @@
         </div>
 
 
-        <form class="example-form" *ngIf="adicionarTarefa()">
+        <form class="example-form" *ngIf="tarefaNovaJornada">
           <table class="example-full-width" cellspacing="0"><tr>
             <td><mat-form-field class="example-full-width" appearance="outline">
               <mat-label>Título</mat-label>
@@ -101,7 +104,7 @@
 
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button  mat-button mat-dialog-close>{{actionAddNovajornada}}</button>
+  <button  mat-button  (click)="FechaOuCriaJornada()">{{actionAddNovajornada}}</button>
   <button mat-button (click)="novaJornada()" cdkFocusInitial>{{actionJornada}}</button>
 </mat-dialog-actions>
 

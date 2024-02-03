@@ -1,7 +1,8 @@
 import {  AppService } from './../service/app.service';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import Mission from '../shared/models/mission-model';
 import { runInThisContext } from 'vm';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog-hero-jorney',
@@ -10,7 +11,8 @@ import { runInThisContext } from 'vm';
 })
 export class DialogHeroJorneyComponent implements OnInit {
 
-  constructor(   public appService: AppService) { }
+  constructor(   public appService: AppService,
+    public dialogRef: MatDialogRef<DialogHeroJorneyComponent>) { }
 
   jorneys: any[] = [];
   taskes: any[] = [];
@@ -23,17 +25,25 @@ export class DialogHeroJorneyComponent implements OnInit {
     'title': '',
     'difficulty': '',
     'description': '',
-    'deadline': ''
+    'deadline': '',
+    'nomeDaJornada': ''
   };
-  novaTarefa: any  = null;
+  novaTarefa: string[]  = [];
   deadline?: string;
   selectedDifficulty: string = "Fácil";
-  tarefaNovaJornada: boolean = true;
+  tarefaNovaJornada: boolean = false;
+  nomeJornada: string = '';
 
+  novaJornadaObj: any = null;
 
 
 
   ngOnInit(): void {
+    this.getJornadas()
+
+  }
+
+  getJornadas(){
     this.appService.getJounerys().subscribe(
       data => {
 
@@ -56,18 +66,98 @@ export class DialogHeroJorneyComponent implements OnInit {
   }
 
   novaJornada(){
-   this.flagNovaJornada = !this.flagNovaJornada;
-   this.actionJornada = this.flagNovaJornada ? 'Cancelar' : 'Nova Jornada';
-   this.actionAddNovajornada = this.flagNovaJornada ? 'Criar Jornada' : 'Fechar';
+    this.flagNovaJornada = !this.flagNovaJornada;
+    this.actionJornada = this.flagNovaJornada ? 'Cancelar' : 'Nova Jornada';
+    this.actionAddNovajornada = this.flagNovaJornada ? 'Criar Jornada' : 'Fechar';
+
+  }
+
+  clearMission (){
+    this.mission = {
+      'title': '',
+      'difficulty': '',
+      'description': '',
+      'deadline': '',
+      'nomeDaJornada': ''
+
+    };
   }
 
   adicionarTarefa(){
     this.tarefaNovaJornada = !this.tarefaNovaJornada;
-    return this.tarefaNovaJornada;
   }
 
   adicionaTarefaNovaJornada(){
-    this.tarefaNovaJornada = true;
+    this.novaTarefa.push(this.mission.title)
+    if(this.novaJornadaObj){
+      this.novaJornadaObj.tarefas.push(this.mission);
+      this.tarefaNovaJornada = false;
+      this.clearMission()
+
+      return
+
+    }
+    this.iniciaObjNovaJornada()
+    this.novaJornadaObj.tarefas.push(this.mission);
+
+    this.tarefaNovaJornada = false;
+    console.log(this.novaJornadaObj);
+    this.clearMission();
+
+  }
+
+  FechaOuCriaJornada(){
+    switch (this.actionAddNovajornada) {
+      case 'Criar Jornada':
+          console.log('jornada criada');
+          this.enviarNovaJornada();
+            this.actionAddNovajornada = 'Cancelar';
+            this.actionJornada = 'Nova Jornada';
+            this.clearMission();
+            this.nomeJornada = '';
+            this.taskes = [];
+
+            setTimeout(() => {
+              this.getJornadas();
+            }, 1000);
+          this.flagNovaJornada = false;
+        break;
+      default:
+        this.dialogRef.close();
+        break;
+    }
+  }
+
+  selecionaJornada(){
+    console.log(this.taskes);
+    this.adicionarTarefasDisponiveis(this.taskes);
+    this.dialogRef.close();
+  }
+
+  adicionarTarefasDisponiveis(taskes: any[]){
+    this.appService.createTask(this.taskes).subscribe(
+      data => {
+      },
+      error =>{
+
+      }
+    )
+  }
+
+  iniciaObjNovaJornada(){
+    this.novaJornadaObj = {
+       'nome' : this.nomeJornada,
+        'tarefas' : []
+    }
+  }
+
+  enviarNovaJornada(){
+    this.appService.createJourney(this.novaJornadaObj).subscribe(
+      data => {
+        console.log(data);
+
+      }
+    )
   }
 
 }

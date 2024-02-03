@@ -56,10 +56,21 @@ def get_tasks():
 def criar_task():
     tasks = initialize_tasks()
     data = request.get_json()
-    id = str(max(map(lambda x: int(x['id']), tasks.get('disponiveis', [])), default=0) + 1) if tasks.get('disponiveis') else '1'
-    tasks['disponiveis'].append({'id': id, **data, 'status': 'disponiveis'})
+
+    if isinstance(data, list):
+        # Se o payload é uma lista de tarefas
+        for task_data in data:
+            id = str(max(map(lambda x: int(x['id']), tasks.get('disponiveis', [])), default=0) + 1) if tasks.get('disponiveis') else '1'
+            running_time = task_data.get('runningTime', '00:00:00')
+            tasks['disponiveis'].append({'id': id, **task_data, 'status': 'disponiveis', 'runningTime': running_time})
+    else:
+        # Se o payload é uma única tarefa
+        id = str(max(map(lambda x: int(x['id']), tasks.get('disponiveis', [])), default=0) + 1) if tasks.get('disponiveis') else '1'
+        running_time = data.get('runningTime', '00:00:00')
+        tasks['disponiveis'].append({'id': id, **data, 'status': 'disponiveis', 'runningTime': running_time})
+
     save_db(tasks)
-    return jsonify({'message': 'Tarefa criada com sucesso!', 'id': id})
+    return jsonify({'message': 'Tarefa(s) criada(s) com sucesso!'})
 
 @app.route('/task/<id>', methods=['PUT'])
 def update_task(id):

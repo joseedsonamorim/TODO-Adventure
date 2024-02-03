@@ -89,13 +89,13 @@ export class AppComponent {
       case 'tarefa':
         dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
         dialogRef.afterClosed().subscribe(result => {
-        this.getMissions();
+          this.getMissions();
         });
         break;
       case 'jornada':
           dialogRef = this.dialog.open( DialogHeroJorneyComponent);
           dialogRef.afterClosed().subscribe(result => {
-          // this.getJorneys();
+            this.getMissions();
           });
 
         break;
