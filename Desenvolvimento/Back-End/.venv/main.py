@@ -6,7 +6,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 CORS(app)
-db_file = '../db.json'
+db_file = './db.json'
 
 def load_db():
     if os.path.exists(db_file):
@@ -56,6 +56,7 @@ def get_tasks():
 def criar_task():
     tasks = initialize_tasks()
     data = request.get_json()
+    id = 0
 
     if isinstance(data, list):
         # Se o payload é uma lista de tarefas
@@ -70,7 +71,7 @@ def criar_task():
         tasks['disponiveis'].append({'id': id, **data, 'status': 'disponiveis', 'runningTime': running_time})
 
     save_db(tasks)
-    return jsonify({'message': 'Tarefa(s) criada(s) com sucesso!'})
+    return jsonify({'message': 'Tarefa(s) criada(s) com sucesso!', 'id': id})
 
 @app.route('/task/<id>', methods=['PUT'])
 def update_task(id):
