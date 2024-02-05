@@ -30,8 +30,8 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
     - Notificações para lembretes de tarefas e eventos na jornada.
    
  4. Quais serviços cada usuário pode executar?
-  
-     - Criar uma conta de usuário.   
+
+     - Criar uma conta de usuário.
      - Fazer login e logout da conta.
      - Criar, editar e excluir tarefas (Missões) pessoais.
      - Criar jornadas do herói com base nas tarefas.
@@ -40,8 +40,7 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
      - Receber notificações de lembretes e eventos.
      - Acessar suporte e documentação.
      - Escolher entre diferentes tipos de tarefas.
-     - Personalizar sua jornada com temas e histórias de fundo
-
+     - Personalizar sua jornada com temas e histórias de fundo.
 
 ## Requisitos do projeto
 
