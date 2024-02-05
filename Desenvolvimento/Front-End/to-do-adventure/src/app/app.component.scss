@@ -1,4 +1,5 @@
 /* Configuração da fonte para o corpo do projeto */
+
 body {
   font-family: 'Aclonica', sans-serif;
 }
@@ -15,8 +16,8 @@ body {
 
 /* Estilos para os mat-cards */
 mat-card {
-  width: 400px; /* Ajustar conforme necessário */
-  margin: 0 20px; /* Ajustar conforme necessário */
+  width: 400px; /* ajustar conforme necessário */
+  margin: 0 20px; /* ajustar conforme necessário */
   background: #88F6C8; /* Background dos mat cards */
 }
 
@@ -85,7 +86,7 @@ mat-card {
 }
 
 mat-card {
-  border-radius: 80px; /* Arredondamento da borda */
+  border-radius: 80px; /* arredondamento da borda */
   overflow: hidden; /* Garante que a borda seja aplicada corretamente */
 }
 

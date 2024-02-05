@@ -14,6 +14,16 @@
     <!-- Saudação -->
     <span class="greeting">Olá, usuário!</span>
   </div>
+
+  <!-- Barra de Pesquisa -->
+  <!-- <mat-form-field class="search-bar">
+    <input matInput placeholder="Pesquisar">
+  </mat-form-field> -->
+
+  <!-- Botão NEW MISSION -->
+  <!-- <mat-card-actions align="end">
+    <button mat-raised-button color="primary" (click)="openCreatNewMission()">NEW MISSION</button>
+  </mat-card-actions> -->
 </div>
 
 <!-- Contêiner de Cards -->
@@ -107,7 +117,7 @@
       </div>
     </mat-card>
 
-    <!-- Card de Tarefas Concluídas -->
+
     <mat-card>
       <div class="example-container">
         <h2>Concluídas</h2>
@@ -130,46 +140,44 @@
                   </button>
                   <button mat-icon-button (click)="openDialogMission(item, true)">
                     <mat-icon aria-hidden="false" aria-label="Example home icon">delete</mat-icon>
-                    </button>
-                  </div>
+                  </button>
                 </div>
-                <div class="details">
-                  <h5>Dificuldade: {{item.difficulty}}</h5>
-                  <h5>Prazo: {{setDeadline(item.deadline)}}</h5>
-                  <h5>Tempo Corrido: {{item.runningTime}}</h5>
-                </div>
-                <p>{{item.description}}</p>
               </div>
+              <div class="details">
+                <h5>Dificuldade: {{item.difficulty}}</h5>
+                <h5>Prazo: {{setDeadline(item.deadline)}}</h5>
+                <h5>Tempo Corrido: {{item.runningTime}}</h5>
+              </div>
+              <p>{{item.description}}</p>
             </div>
           </div>
         </div>
-      </mat-card>
-    </div>
-  </div>
-
-  <!-- Rodapé -->
-  <div class="footer-container">
-    <!-- Botão para Criar Tarefa -->
-    <div class="create-task">
-      <div class="circle">
-        <!-- Ícone de Adição -->
-        <button mat-icon-button (click)="openDialogMission(mission, false, 'tarefa')">
-          <mat-icon class="plus-icon">create</mat-icon>
-        </button>
       </div>
-      <!-- Texto "Criar Tarefa" -->
-      <span class="task-text">Criar Tarefa</span>
-    </div>
-
-    <!-- Botão para Criar Jornada do Herói -->
-    <div class="create-task">
-      <div class="circle">
-        <!-- Ícone de Adição -->
-        <button mat-icon-button (click)="openDialogMission(mission, false, 'jornada')">
-          <mat-icon class="plus-icon">list</mat-icon>
-        </button>
-      </div>
-      <!-- Texto "Jornada do Herói" -->
-      <span class="task-text">Jornada do Herói</span>
-    </div>
+    </mat-card>
   </div>
+</div>
+
+<!-- Rodapé -->
+<div class="footer-container">
+  <div class="create-task">
+    <div class="circle">
+      <!-- Ícone de Adição -->
+      <button mat-icon-button (click)="openDialogMission(mission, false, 'tarefa')">
+        <mat-icon class="plus-icon">create</mat-icon>
+      </button>
+    </div>
+    <!-- Texto "Criar Tarefa" -->
+    <span class="task-text">Criar Tarefa</span>
+  </div>
+  <div class="create-task">
+    <div class="circle">
+      <!-- Ícone de Adição -->
+      <button mat-icon-button (click)="openDialogMission(mission, false, 'jornada')">
+        <mat-icon class="plus-icon">list</mat-icon>
+      </button>
+    </div>
+    <!-- Texto "Criar Tarefa" -->
+    <span class="task-text">Jornada do Héroi</span>
+  </div>
+</div>
+

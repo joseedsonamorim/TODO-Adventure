@@ -1,161 +1,27 @@
-/* Estilos atualizados para o novo diálogo "Jornada do Herói" */
-
-/* Título do novo diálogo */
-.mat-dialog-title {
-  font-family: 'Aclonica', sans-serif;
-  color: #2C7F7F; /* Cor do título */
-  border-radius: 5px; /* Bordas levemente arredondadas */
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
 }
 
-
-/* Conteúdo do novo diálogo */
-.mat-dialog-content {
-  color: #2C7F7F; /* Cor do texto */
-  height: 50vh;
-  display: flex;
-  flex-direction: row;
-  background-color: #2C7F7F; /* Cor de fundo */
-}
-
-/* Estilos para a seção com jornadas disponíveis */
-div[style^="display: flex; flex-direction: row;"] {
-  display: flex;
-  flex-direction: row;
-}
-
-/* Cartão das jornadas disponíveis */
-mat-card {
-  width: 30vw;
-  background-color: #ffff; /* Cor de fundo do cartão */
-  margin: 25px auto;
-  text-align: center;
-  font-family: 'Aclonica', sans-serif;
-
-  /* Flexbox */
+.container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 366px;
+  background-color: #2C7F7F80;
+  padding: 10px;
+  border-radius: 25px;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Adiciona sombra nos itens */
 }
 
-/* Subtítulo do cartão */
-mat-card-subtitle {
-  color: #2C7F7F; /* Cor do texto do subtítulo */
-}
-
-/* Botão de adicionar jornada */
-button.mat-button[color="warn"] {
-  background-color: #88F6C8; /* Cor de fundo do botão */
-  color: #2C7F7F; /* Cor do texto do botão */
-}
-
-/* Estilos para a seção de nova jornada */
-div[style^="padding-left: 20px; width: 26vw;"] {
-  padding-left: 20px;
-  width: 26vw;
-  background-color: #2C7F7F; /* Cor de fundo */
-}
-
-/* Título "Nova Jornada" */
-h1 {
-  font-family: 'Aclonica', sans-serif;
-  color: #2C7F7F; /* Cor do texto do título */
-  background-color: #ffff; /* Nova cor de fundo do título */
-  border-radius: 5px; /* Bordas levemente arredondadas */
-  padding: 10px; /* Espaçamento interno do título */
-  text-align: center; /* Centraliza o texto do título */
-  margin: 25px auto;
-}
-
-/* Formulário de nova jornada */
-form.example-form {
+.example-form {
   min-width: 150px;
   max-width: 500px;
   width: 100%;
-
-  font-family: 'Aclonica', sans-serif; /* Use the same font as in previous responses */
-  color: #2C7F7F;
-  background-color: #ffff;
-  border-radius: 5px;
-  padding: 10px;
-  text-align: center; /* Center the title */
-
-
 }
 
-
-
-form {
-  margin: 20px auto; /* Center forms horizontally */
-  padding: 20px; /* Add spacing around form elements */
-  border: 1px solid #ddd; /* Add a border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
-
-  /* Consistent font and spacing for form elements */
-  font-family: 'Aclonica', sans-serif;
-  font-size: 16px;
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-  }
-
-  input,
-  textarea,
-  select {
-    width: 100%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-
-  input:focus,
-  textarea:focus,
-  select:focus {
-    outline: none;
-    border-color: #88F6C8; /* Highlight on focus */
-  }
-
-  /* Specific styles for tables within forms */
-  table {
-    width: 100%; /* Ensure full width for responsiveness */
-  }
-
-  td {
-    padding-right: 8px; /* Spacing between table cells */
-  }
-
-  /* Specific styles for the "example-form-field" class */
-  .example-form-field {
-    width: 100%; /* Full width for all form fields with this class */
-  }
+.example-full-width {
+  width: 100%;
 }
 
-button {
-
-  font-family: 'Aclonica', sans-serif;
-  font-size: 16px;
-  border-radius: 5px;
-
-  &:not([color]) {
-    background-color: #2C7F7F;
-    color: #fff;
-
-    &:hover {
-      background-color: #77ddc6;
-    }
-  }
-
-
-  &[color="warn"] {
-    background-color: #f57c00;
-    color: #fff;
-
-    &:hover {
-      background-color: #f4511e;
-    }
-  }
-
+td {
+  padding-right: 8px;
 }

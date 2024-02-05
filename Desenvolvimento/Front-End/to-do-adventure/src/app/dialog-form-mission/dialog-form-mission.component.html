@@ -1,60 +1,37 @@
-<!-- O título do diálogo com interpolação para exibir o valor da variável 'label' -->
-<h2 mat-dialog-title>{{ label }} Tarefa</h2>
-
-<!-- Conteúdo do diálogo usando a classe mat-typography -->
+<h2 mat-dialog-title>{{label}} Tarefa</h2>
 <mat-dialog-content class="mat-typography">
-  <!-- Formulário com a classe example-form -->
   <form class="example-form">
-    <!-- Tabela para organizar os campos de título e prazo -->
-    <table class="example-full-width" cellspacing="0">
-      <tr>
-        <!-- Campo de título -->
-        <td>
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Título</mat-label>
-            <!-- Entrada de texto com two-way binding usando ngModel -->
-            <input matInput [(ngModel)]="mission.title" [ngModelOptions]="{ standalone: true }">
-          </mat-form-field>
-        </td>
-        <!-- Campo de prazo com tipo de data -->
-        <td>
-          <mat-form-field class="example-full-width" appearance="outline">
-            <mat-label>Prazo</mat-label>
-            <!-- Entrada de data com two-way binding usando ngModel -->
-            <input type="date" matInput [(ngModel)]="mission.deadline" [ngModelOptions]="{ standalone: true }">
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+    <table class="example-full-width" cellspacing="0"><tr>
+      <td><mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Título</mat-label>
+        <input matInput  [(ngModel)]="mission.title" value="{{mission.title}}" [ngModelOptions]="{standalone: true}">
+      </mat-form-field></td>
+      <td><mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Prazo</mat-label>
+        <input type="date" matInput [(ngModel)]="mission.deadline" value="{{deadline}}" [ngModelOptions]="{standalone: true}">
+      </mat-form-field></td>
+    </tr></table>
 
-    <!-- Parágrafo para organizar o campo de descrição -->
     <p>
       <mat-form-field class="example-full-width" appearance="outline">
         <mat-label>Descrição</mat-label>
-        <!-- Área de texto com two-way binding usando ngModel -->
-        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" [ngModelOptions]="{ standalone: true }"></textarea>
+        <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" value="{{mission.description}}" [ngModelOptions]="{standalone: true}"></textarea>
       </mat-form-field>
     </p>
 
-    <!-- Campo de seleção para a dificuldade -->
     <mat-form-field class="example-full-width" appearance="outline">
       <mat-label>Dificuldade</mat-label>
-      <!-- Select box com two-way binding usando ngModel -->
-      <mat-select [(ngModel)]="mission.difficulty" [(value)]="selectedDifficulty" [ngModelOptions]="{ standalone: true }">
-        <!-- Opções para a dificuldade -->
+      <mat-select [(ngModel)]="mission.difficulty" [(value)]="selectedDifficulty" [ngModelOptions]="{standalone: true}">
         <mat-option value="Fácil">Fácil</mat-option>
         <mat-option value="Média">Média</mat-option>
         <mat-option value="Difícil">Difícil</mat-option>
       </mat-select>
     </mat-form-field>
+
   </form>
 
 </mat-dialog-content>
-
-<!-- Ações do diálogo alinhadas à direita -->
 <mat-dialog-actions align="end">
-  <!-- Botão para fechar o diálogo sem salvar -->
   <button mat-button mat-dialog-close>Cancelar</button>
-  <!-- Botão para fechar o diálogo e chamar a função 'criarOuSalvar' -->
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="criarOuSalvar()">{{ label }}</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="criarOuSalvar()">{{label}}</button>
 </mat-dialog-actions>
