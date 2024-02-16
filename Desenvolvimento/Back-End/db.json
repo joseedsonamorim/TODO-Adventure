@@ -9,7 +9,7 @@
           "title": "Start of the Journey",
           "description": "The hero begins his epic journey!",
           "runningTime": "00:00:00",
-          "difficulty": "Low",
+          "difficulty": "Easy",
           "type": "available",
           "deadline": "2023-12-13"
         },
@@ -34,7 +34,7 @@
         {
           "deadline": "2023-12-13",
           "description": "The hero begins his epic journey!",
-          "difficulty": "Low",
+          "difficulty": "Easy",
           "runningTime": "00:00:00",
           "title": "Start of the Journey",
           "type": "available",
