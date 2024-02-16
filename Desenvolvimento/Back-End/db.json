@@ -10,7 +10,7 @@
           "description": "The hero begins his epic journey!",
           "runningTime": "00:00:00",
           "difficulty": "Easy",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         },
         {
@@ -19,7 +19,7 @@
           "description": "The hero meets the wise master to receive guidance.",
           "runningTime": "00:00:00",
           "difficulty": "Medium",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         },
         {
@@ -28,7 +28,7 @@
           "description": "The hero faces an epic battle against the supreme villain!",
           "runningTime": "00:00:00",
           "difficulty": "High",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         },
         {
@@ -37,7 +37,7 @@
           "difficulty": "Easy",
           "runningTime": "00:00:00",
           "title": "Start of the Journey",
-          "type": "available",
+          "status": "available",
           "id": "4"
         }
       ]
@@ -52,7 +52,7 @@
           "description": "Journey task",
           "runningTime": "00:00:00",
           "difficulty": "Medium",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         },
         {
@@ -61,7 +61,7 @@
           "description": "Something",
           "runningTime": "00:00:00",
           "difficulty": "Hard",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         }
       ]
@@ -76,7 +76,7 @@
           "difficulty": "Easy",
           "description": "Go to the forest to find the dragon's cave",
           "runningTime": "00:00:00",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         },
         {
@@ -85,7 +85,7 @@
           "difficulty": "Hard",
           "description": "Kill the dragon and get its scales",
           "runningTime": "00:00:00",
-          "type": "available",
+          "status": "available",
           "deadline": "2023-12-13"
         }
       ]

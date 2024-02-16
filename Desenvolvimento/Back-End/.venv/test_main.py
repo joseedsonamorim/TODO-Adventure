@@ -26,7 +26,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the first mission",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -48,7 +48,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the initial mission",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -68,7 +68,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the updated mission",
                     "runningTime": "01:00:00",
                     "difficulty": "Hard",
-                    "type": "completed",
+                    "status": "completed",
                     "deadline": "2023-12-15"
                 }
             ]
@@ -90,7 +90,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the initial mission",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -105,7 +105,7 @@ class TestApp(unittest.TestCase):
             "description": "Description of the new mission",
             "runningTime": "00:00:00",
             "difficulty": "Medium",
-            "type": "available",
+            "status": "available",
             "deadline": "2023-12-14"
         }
 
@@ -125,7 +125,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the mission to update",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -139,8 +139,8 @@ class TestApp(unittest.TestCase):
             "title": "Updated Mission",
             "description": "Description of the updated mission",
             "runningTime": "02:00:00",
-            "difficulty": "Extreme",
-            "type": "completed",
+            "difficulty": "Hard",
+            "status": "completed",
             "deadline": "2023-12-16"
         }
 
@@ -160,7 +160,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the mission to delete",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -185,7 +185,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the mission to set",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -210,7 +210,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the mission to get",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
@@ -239,7 +239,7 @@ class TestApp(unittest.TestCase):
                     "description": "Description of the mission to delete",
                     "runningTime": "00:00:00",
                     "difficulty": "Easy",
-                    "type": "available",
+                    "status": "available",
                     "deadline": "2023-12-13"
                 }
             ]
