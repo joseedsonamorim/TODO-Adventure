@@ -40,4 +40,4 @@ O projeto ToDoAdventurer será um site que combina listas de tarefas do estilo T
 
 **REQF4** - O sistema deve permitir que os usuários visualizem seu progresso na jornada, incluindo tarefas concluídas e em andamento.
 
-**REQF5** - Os usuários devem ser capazes de transferir suas tarefas de "disponível" para "em andamento" e de "em andamento" para "concluídas.
+**REQF5** - Os usuários devem ser capazes de transferir suas tarefas de "disponível" para "em andamento" e de "em andamento" para "concluídas".
