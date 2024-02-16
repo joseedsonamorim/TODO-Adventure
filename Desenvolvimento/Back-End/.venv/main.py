@@ -36,7 +36,15 @@ def post_journey():
     new_journey = request.get_json()
     if 'missions' not in new_journey or len(new_journey['missions']) == 0:
         return jsonify({'message': 'A journey must have at least one mission.'}), 400
+
     new_journey['id'] = get_next_id(data['journeys'])
+
+    # Atribuir IDs incrementais para as missões
+    i = 1
+    for mission in new_journey['missions']:
+        mission['id'] = str(i)
+        i+=i
+
     data['journeys'].append(new_journey)
     save_db(data)
     return jsonify({'message': 'Journey created successfully.', 'id': new_journey['id']})
@@ -100,6 +108,31 @@ def delete_mission(journey_id, mission_id):
                     return jsonify({'message': 'Mission deleted successfully.'})
             return jsonify({'message': 'Mission not found.'}), 404
     return jsonify({'message': 'Journey not found.'}), 404
+
+@app.route('/setted_journey', methods=['GET'])
+def get_setted_journey():
+    data = load_db()
+    setted_journey_id = data.get('setted_journey')
+    if setted_journey_id is None:
+        return jsonify({'message': 'No setted journey found.'}), 404
+
+    for journey in data['journeys']:
+        if journey['id'] == setted_journey_id:
+            return jsonify(journey)
+
+    return jsonify({'message': 'Setted journey not found.'}), 404
+
+@app.route('/setted_journey/<journey_id>', methods=['PUT'])
+def set_setted_journey(journey_id):
+    data = load_db()
+    journey_ids = [journey['id'] for journey in data['journeys']]
+
+    if journey_id not in journey_ids:
+        return jsonify({'message': 'Journey not found.'}), 404
+
+    data['setted_journey'] = journey_id
+    save_db(data)
+    return jsonify({'message': f'Setted journey with id {journey_id} successfully.'})
 
 if __name__ == '__main__':
     app.run(debug=True)
