@@ -13,25 +13,27 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class DialogWarningsComponent implements OnInit {
 
   mission: Mission;
+  journeyID: number;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _snackBar: MatSnackBar,
     public appService : AppService
     ) {
-    this.mission = data;
+      this.mission = data;
+      this.journeyID = Number(localStorage.getItem("settedJourney"));
    }
 
   ngOnInit(): void {
   }
 
   deleteMission(){
-    this.appService.deleteTask(this.mission.id).subscribe(
+    this.appService.deleteMission(this.journeyID, this.mission.id).subscribe(
       message => {
         this.openSnackBar(message.message)
       },
       erro =>{
-        console.error('Erro ao criar a tarefa', erro);
+        console.error('Erro ao deletar tarefa', erro);
       });
 
   }

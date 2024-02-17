@@ -6,27 +6,28 @@ import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mi
 import Mission from './shared/models/mission-model';
 import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
 import { DialogHeroJorneyComponent } from './dialog-hero-jorney/dialog-hero-jorney.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
   mission: Mission = {
+    'id': 0,
     'title': '',
     'difficulty': '',
     'description': '',
     'deadline': ''
   };
 
+  settedJourney: any;
+
   missions: any;
   missoesDisponiveis: any = [];
   missoesEmAndamento: any = [];
   missoesConcluidas: any = [];
-
-  statusOK: boolean = false;
-
-  item: any;
 
   startTimer: any;
   rodandoCronometro = false;
@@ -38,18 +39,32 @@ export class AppComponent {
 
   constructor(
     public dialog: MatDialog,
-    public appService: AppService
+    public appService: AppService,
     ) {}
 
   ngOnInit() {
-    this.getMissions();
+    this.getSettedJourney();
+  }
+
+  getSettedJourney() {
+    this.appService.getSettedJourney().subscribe(
+      data => {
+        this.settedJourney = data;
+        this.missoesDisponiveis =  this.settedJourney.missions.filter((mission: { status: string; }) => mission.status === 'available');
+        this.missoesConcluidas = this.settedJourney.missions.filter((mission: { status: string; }) => mission.status === 'completed');
+        this.missoesEmAndamento = this.settedJourney.missions.filter((mission: { status: string; }) => mission.status === 'in progress');
+        localStorage.setItem("settedJourney", this.settedJourney.id);
+      },
+      error => console.error('Não há jornada setada', error)
+    );
+
   }
 
   drop(event: CdkDragDrop<any[]>, newList: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      if(event.container.id == 'emAndamento') {
+      if(event.container.id == 'in progress') {
         if (this.missoesEmAndamento.length) { return; }
         const array_data = event.previousContainer.data[event.previousIndex].runningTime.split(':');
         this.sec = parseInt(array_data[2]) < 10 ? '0' + parseInt(array_data[2]) : parseInt(array_data[2]);
@@ -58,7 +73,7 @@ export class AppComponent {
         this.mostrarCronometro = true;
         this.startCronometro();
       }
-      if(event.previousContainer.id == 'emAndamento') {
+      if(event.previousContainer.id == 'in progress') {
         this.stopCronometro();
         event.previousContainer.data[event.previousIndex].runningTime = [this.hr, this.min, this.sec].join(':');
         this.mostrarCronometro = false;
@@ -72,7 +87,7 @@ export class AppComponent {
       const movedItem = {...event.container.data[event.currentIndex],
         status: newList,
       };
-      this.updateTask(movedItem);
+      this.updateMission(movedItem);
     }
   }
 
@@ -81,7 +96,7 @@ export class AppComponent {
     if(isDelete){
       dialogRef = this.dialog.open( DialogWarningsComponent, {data});
       dialogRef.afterClosed().subscribe(result => {
-        this.getMissions();
+        this.getSettedJourney();
       });
       return
     }
@@ -89,13 +104,13 @@ export class AppComponent {
       case 'tarefa':
         dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
         dialogRef.afterClosed().subscribe(result => {
-          this.getMissions();
+          this.getSettedJourney();
         });
         break;
       case 'jornada':
           dialogRef = this.dialog.open( DialogHeroJorneyComponent);
           dialogRef.afterClosed().subscribe(result => {
-            this.getMissions();
+            this.getSettedJourney();
           });
 
         break;
@@ -109,50 +124,9 @@ export class AppComponent {
     return [array_data[2], array_data[1], array_data[0]].join('/');
   }
 
-  getJorneys(){
-    this.appService.getJounerys().subscribe(
-      data => {
-        console.log(data);
-
-      },
-      error => console.error('Erro ao obter Jornadas', error)
-    )
-  }
-
-  getMissions() {
-    this.appService.getMissions().subscribe(
-      data => {
-        this.missions = data;
-        this.missoesDisponiveis = this.missions.disponiveis ? this.missions.disponiveis : [];
-        this.missoesConcluidas = this.missions.concluidas ? this.missions.concluidas : [];
-        this.missoesEmAndamento = this.missions.emAndamento ? this.missions.emAndamento : [];
-      },
-      error => console.error('Erro ao obter missões', error)
-    );
-  }
-
-  createTask() {
-    const newTask = {
-      title: 'Nova Tarefa',
-      description: 'Descrição da Nova Tarefa',
-      deadline: '2023-12-31',
-      difficulty: 'Média'
-    };
-
-    this.appService.createTask(newTask).subscribe(response => {
-      this.reloadTasks();
-    });
-  }
-
-  updateTask(mission: Mission) {
-    this.appService.updateTask(mission.id, mission).subscribe(response => {
-      this.reloadTasks();
-    });
-  }
-
-  private reloadTasks() {
-    this.appService.getMissions().subscribe(data => {
-      this.missions = data;
+  updateMission(mission: Mission) {
+    this.appService.updateMission(this.settedJourney.id, mission.id, mission).subscribe(response => {
+      this.getSettedJourney();
     });
   }
 

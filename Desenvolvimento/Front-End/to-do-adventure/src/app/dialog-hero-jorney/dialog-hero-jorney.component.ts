@@ -22,15 +22,17 @@ export class DialogHeroJorneyComponent implements OnInit {
   actionAddNovajornada = 'Fechar'
   actionJornada: string = 'Nova Jornada';
   mission: Mission = {
+    'id': 0,
     'title': '',
     'difficulty': '',
     'description': '',
     'deadline': '',
-    'nomeDaJornada': ''
+    'runningTime': '00:00:00',
+    'status': 'available'
   };
   novaTarefa: string[]  = [];
   deadline?: string;
-  selectedDifficulty: string = "Fácil";
+  selectedDifficulty: string = "Easy";
   tarefaNovaJornada: boolean = false;
   nomeJornada: string = '';
 
@@ -44,10 +46,10 @@ export class DialogHeroJorneyComponent implements OnInit {
   }
 
   getJornadas(){
-    this.appService.getJounerys().subscribe(
+    this.appService.getJourneys().subscribe(
       data => {
 
-        this.jorneys = Object.keys(data);
+        this.jorneys = data;
 
       },
       error => {
@@ -56,13 +58,8 @@ export class DialogHeroJorneyComponent implements OnInit {
     )
   }
 
-  openJorney(jorney: string){
-    this.taskes = [];
-    this.appService.getJourney(jorney).subscribe(
-      data => {
-        this.taskes = data.jornada.tarefas;
-      }
-    )
+  openJorney(jorney: any){
+    this.taskes = jorney.missions;
   }
 
   novaJornada(){
@@ -74,12 +71,13 @@ export class DialogHeroJorneyComponent implements OnInit {
 
   clearMission (){
     this.mission = {
+      'id': 0,
       'title': '',
       'difficulty': '',
       'description': '',
       'deadline': '',
-      'nomeDaJornada': ''
-
+      'runningTime': '00:00:00',
+      'status': 'available'
     };
   }
 
@@ -90,7 +88,7 @@ export class DialogHeroJorneyComponent implements OnInit {
   adicionaTarefaNovaJornada(){
     this.novaTarefa.push(this.mission.title)
     if(this.novaJornadaObj){
-      this.novaJornadaObj.tarefas.push(this.mission);
+      this.novaJornadaObj.missions.push(this.mission);
       this.tarefaNovaJornada = false;
       this.clearMission()
 
@@ -98,7 +96,7 @@ export class DialogHeroJorneyComponent implements OnInit {
 
     }
     this.iniciaObjNovaJornada()
-    this.novaJornadaObj.tarefas.push(this.mission);
+    this.novaJornadaObj.missions.push(this.mission);
 
     this.tarefaNovaJornada = false;
     console.log(this.novaJornadaObj);
@@ -128,26 +126,22 @@ export class DialogHeroJorneyComponent implements OnInit {
     }
   }
 
-  selecionaJornada(){
-    console.log(this.taskes);
-    this.adicionarTarefasDisponiveis(this.taskes);
-    this.dialogRef.close();
-  }
-
-  adicionarTarefasDisponiveis(taskes: any[]){
-    this.appService.createTask(this.taskes).subscribe(
+  selecionaJornada(journeyID: number){
+    this.appService.setSettedJourney(journeyID).subscribe(
       data => {
+        this.dialogRef.close();
       },
       error =>{
-
+        console.error('Não foi possível setar a jornada', error)
       }
-    )
+    );
+
   }
 
   iniciaObjNovaJornada(){
     this.novaJornadaObj = {
-       'nome' : this.nomeJornada,
-        'tarefas' : []
+      'name' : this.nomeJornada,
+      'missions' : []
     }
   }
 
@@ -160,4 +154,8 @@ export class DialogHeroJorneyComponent implements OnInit {
     )
   }
 
+  setDeadline(data: string) {
+    const array_data = data.split('-');
+    return [array_data[2], array_data[1], array_data[0]].join('/');
+  }
 }

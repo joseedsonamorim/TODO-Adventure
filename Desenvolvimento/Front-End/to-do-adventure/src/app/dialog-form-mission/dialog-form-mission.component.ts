@@ -11,7 +11,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class DialogFormMissionComponent implements OnInit {
 
   mission: Mission;
-  selectedDifficulty: string = "Fácil";
+  journeyID: number;
+  selectedDifficulty: string = "Easy";
   label: string = "Criar";
   deadline?: string;
   flagEditar: boolean = false;
@@ -22,8 +23,9 @@ export class DialogFormMissionComponent implements OnInit {
     public appService: AppService
     ) {
       this.mission = data;
+      this.journeyID = Number(localStorage.getItem("settedJourney"));
       this.isEditar();
-   }
+    }
 
   ngOnInit(): void { }
 
@@ -50,19 +52,18 @@ export class DialogFormMissionComponent implements OnInit {
   }
 
   postNewMission(){
-    this.mission = {...this.mission, runningTime: "00:00:00"}
-    this.appService.createTask(this.mission).subscribe(
+    this.mission = {...this.mission, runningTime: "00:00:00", status: "available"}
+    this.appService.createMission(this.journeyID, this.mission).subscribe(
       mensagem => {
         this.openSnackBar(mensagem.message);
       },
       erro => {
         console.error('Erro ao criar a tarefa', erro);
       });
-
   }
 
   editarMissao(){
-    this.appService.updateTask(this.mission.id, this.mission).subscribe(
+    this.appService.updateMission(this.journeyID, this.mission.id, this.mission).subscribe(
       mensagem => {
         this.openSnackBar(mensagem.message);
       },
@@ -72,7 +73,7 @@ export class DialogFormMissionComponent implements OnInit {
   }
 
   openSnackBar(message: string) {
-    this._snackBar.open(message, "ok", {
+    this._snackBar.open(message, "OK", {
       duration: 3000, horizontalPosition: 'center',
       verticalPosition: 'top',});
   }

@@ -1,1 +1,95 @@
-{"concluidas": [{"id": "7", "deadline": "2023-12-14", "description": "Uma miss\u00c3\u00a3o em constante mudan\u00c3\u00a7a!", "difficulty": "M\u00c3\u00a9dia", "runningTime": "00:00:28", "status": "concluidas", "title": "Miss\u00c3\u00a3o Mudando"}, {"id": "8", "deadline": "2023-12-13", "description": "Um desafio para testar suas habilidades!", "difficulty": "M\u00c3\u00a9dia", "runningTime": "00:00:12", "status": "concluidas", "title": "Teste de Habilidade AQUIIII"}, {"id": "4", "deadline": "2023-12-31", "description": "Miss\u00c3\u00a3o cumprida com honra!", "difficulty": "M\u00c3\u00a9dia", "runningTime": "00:00:12", "status": "concluidas", "title": "Conclus\u00c3\u00a3o Triunfal"}, {"id": "5", "deadline": "2023-12-31", "description": "Uma jornada \u00c3\u00a9pica chega ao fim!", "difficulty": "Alta", "runningTime": "00:01:10", "status": "concluidas", "title": "A Grande Jornada"}, {"id": "3", "deadline": "2023-12-31", "description": "Desafio conclu\u00c3\u00addo com bravura!", "difficulty": "Alta", "runningTime": "00:00:00", "status": "concluidas", "title": "A Espada Perdida"}, {"id": "107", "deadline": "0033-03-31", "description": "teste", "difficulty": "F\u00e1cil", "nomeDaJornada": "", "runningTime": "00:00:03", "status": "concluidas", "title": "teste de tarefa 1"}], "disponiveis": [{"id": "13", "deadline": "2023-12-22", "description": "Enfrentando os perigos das profundezas!", "difficulty": "Dif\u00c3\u00adcil", "runningTime": "00:00:00", "status": "disponiveis", "title": "Desafio nas Profundezas"}, {"id": "9", "deadline": "2023-12-11", "description": "Cavar um po\u00c3\u00a7o para enterrar o drag\u00c3\u00a3o e realizar um funeral.", "difficulty": "Dif\u00c3\u00adcil", "runningTime": "00:01:14", "status": "disponiveis", "title": "Cavar um Po\u00c3\u00a7o"}, {"id": "1", "deadline": "2023-12-31", "description": "Uma tarefa conclu\u00c3\u00adda com sucesso!", "difficulty": "M\u00c3\u00a9dia", "runningTime": "00:00:00", "status": "disponiveis", "title": "Feito e Finalizado"}, {"id": "10", "deadline": "2023-12-15", "description": "Um teste \u00c3\u00a9pico aguarda o destemido aventureiro!", "difficulty": "Dif\u00c3\u00adcil", "runningTime": "00:00:00", "status": "disponiveis", "title": "Teste \u00c3\u2030pico 2"}, {"id": "102", "deadline": "2023-12-05", "description": "O her\u00c3\u00b3i encontra o s\u00c3\u00a1bio mestre para receber orienta\u00c3\u00a7\u00c3\u00b5es.", "difficulty": "M\u00c3\u00a9dia", "runningTime": "00:00:00", "status": "disponiveis", "title": "Encontro com o Mestre"}, {"id": "103", "deadline": "2023-12-10", "description": "O her\u00c3\u00b3i enfrenta uma batalha \u00c3\u00a9pica contra o vil\u00c3\u00a3o supremo!", "difficulty": "Alta", "runningTime": "00:00:00", "status": "disponiveis", "title": "Batalha \u00c3\u2030pica"}, {"id": "104", "deadline": "0033-03-31", "description": "Tarefa de jornada", "difficulty": "M\u00c3\u00a9dia", "nomeDaJornada": "", "runningTime": "00:00:00", "status": "disponiveis", "title": "Tarefa de Jornada"}, {"id": "105", "deadline": "275760-03-31", "description": "Oqqq", "difficulty": "Dif\u00c3\u00adcil", "nomeDaJornada": "Senhor me ajude", "runningTime": "00:00:00", "status": "disponiveis", "title": "Desse aqui plmds"}, {"id": "106", "deadline": "2024-04-12", "description": "Ir at\u00c3\u00a9 a floresta encontrar a caverna do drag\u00c3\u00a3o", "difficulty": "F\u00c3\u00a1cil", "nomeDaJornada": "", "title": "Ir a Floresta", "status": "disponiveis", "runningTime": "00:00:00"}], "emAndamento": [], "jornadas": {"Jornada \u00c3\u2030pica": {"tarefas": [{"id": "101", "title": "In\u00c3\u00adcio da Jornada", "description": "O her\u00c3\u00b3i come\u00c3\u00a7a sua jornada \u00c3\u00a9pica!", "deadline": "2023-12-01", "difficulty": "Baixa", "status": "disponiveis"}, {"id": "102", "title": "Encontro com o Mestre", "description": "O her\u00c3\u00b3i encontra o s\u00c3\u00a1bio mestre para receber orienta\u00c3\u00a7\u00c3\u00b5es.", "deadline": "2023-12-05", "difficulty": "M\u00c3\u00a9dia", "status": "disponiveis"}, {"id": "103", "title": "Batalha \u00c3\u2030pica", "description": "O her\u00c3\u00b3i enfrenta uma batalha \u00c3\u00a9pica contra o vil\u00c3\u00a3o supremo!", "deadline": "2023-12-10", "difficulty": "Alta", "status": "disponiveis"}]}, "Senhor me ajude": {"tarefas": [{"id": "104", "title": "Tarefa de jornada", "description": "Tarefa de jornada", "deadline": "0033-03-31", "difficulty": "M\u00c3\u00a9dia", "nomeDaJornada": "", "status": "disponiveis"}, {"id": "105", "title": "Desse aqui plmds", "description": "Oqqq", "deadline": "275760-03-31", "difficulty": "Dif\u00c3\u00adcil", "nomeDaJornada": "Senhor me ajude", "status": "disponiveis"}]}, "Caverna do Drag\u00c3\u00a3o": {"tarefas": [{"title": "Ir a Floresta", "difficulty": "F\u00c3\u00a1cil", "description": "Ir at\u00c3\u00a9 a floresta encontrar a caverna do drag\u00c3\u00a3o", "deadline": "2024-04-12", "nomeDaJornada": ""}, {"title": "Matar o Drag\u00c3\u00a3o", "difficulty": "Dif\u00c3\u00adcil", "description": "Mate o drag\u00c3\u00a3o e consiga suas escamas", "deadline": "2024-02-14", "nomeDaJornada": ""}]}, "Conhecendo a Princesa": {"tarefas": [{"title": "V\u00c3\u00a1 at\u00c3\u00a9 o Pal\u00c3\u00a1cio", "difficulty": "F\u00c3\u00a1cil", "description": "V\u00c3\u00a1 at\u00c3\u00a9 o pal\u00c3\u00a1cio do rei", "deadline": "", "nomeDaJornada": ""}, {"title": "Encontre a Princesa", "difficulty": "F\u00c3\u00a1cil", "description": "V\u00c3\u00a1 at\u00c3\u00a9 o jardim encontrar a princesa", "deadline": "2024-03-01", "nomeDaJornada": ""}]}, "Testando cria\u00e7\u00e3o de jornada": {"tarefas": [{"title": "teste de tarefa 1", "difficulty": "F\u00e1cil", "description": "teste", "deadline": "0033-03-31", "nomeDaJornada": ""}, {"title": "teste de tarefa 2", "difficulty": "", "description": "", "deadline": "", "nomeDaJornada": ""}]}}}
+{
+  "journeys": [
+    {
+      "id": "1",
+      "name": "Epic Journey",
+      "missions": [
+        {
+          "id": "1",
+          "title": "Start of the Journey",
+          "description": "The hero begins his epic journey!",
+          "runningTime": "00:00:00",
+          "difficulty": "Easy",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "2",
+          "title": "Meeting the Master",
+          "description": "The hero meets the wise master to receive guidance.",
+          "runningTime": "00:00:00",
+          "difficulty": "Medium",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "3",
+          "title": "Epic Battle",
+          "description": "The hero faces an epic battle against the supreme villain!",
+          "runningTime": "00:00:00",
+          "difficulty": "High",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "deadline": "2023-12-13",
+          "description": "The hero begins his epic journey!",
+          "difficulty": "Easy",
+          "runningTime": "00:00:00",
+          "title": "Start of the Journey",
+          "status": "available",
+          "id": "4"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Help me, Lord",
+      "missions": [
+        {
+          "id": "4",
+          "title": "Journey Task",
+          "description": "Journey task",
+          "runningTime": "00:00:00",
+          "difficulty": "Medium",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "5",
+          "title": "This here please",
+          "description": "Something",
+          "runningTime": "00:00:00",
+          "difficulty": "Hard",
+          "status": "available",
+          "deadline": "2023-12-13"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Dragon's Cave",
+      "missions": [
+        {
+          "id": "6",
+          "title": "Go to the Forest",
+          "difficulty": "Easy",
+          "description": "Go to the forest to find the dragon's cave",
+          "runningTime": "00:00:00",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "7",
+          "title": "Kill the Dragon",
+          "difficulty": "Hard",
+          "description": "Kill the dragon and get its scales",
+          "runningTime": "00:00:00",
+          "status": "available",
+          "deadline": "2023-12-13"
+        }
+      ]
+    }
+  ],
+  "setted_journey": null
+}

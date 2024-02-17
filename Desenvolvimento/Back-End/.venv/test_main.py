@@ -9,258 +9,250 @@ class TestApp(unittest.TestCase):
         app.config['DEBUG'] = False
         self.app = app.test_client()
 
-    def test_get_tasks(self):
-        # Testa a obtenção de tarefas
-        response = self.app.get('/task')
-        self.assertEqual(response.status_code, 200)
-        tasks = json.loads(response.get_data(as_text=True))
-
-    def test_criar_task(self):
-        # Testa a criação de uma nova tarefa
-        task_data = {
-            "title": "Nova Tarefa",
-            "description": "Descrição da nova tarefa",
-            "deadline": "2023-12-31",
-            "difficulty": "Média",
-            "runningTime": "00:00:00"
-        }
-
-        response = self.app.post('/task', json=task_data)
-        self.assertEqual(response.status_code, 200)
-        result = json.loads(response.get_data(as_text=True))
-        self.assertEqual(result['message'], 'Tarefa(s) criada(s) com sucesso!')
-
-        # Verifica se a nova tarefa está presente no banco de dados
-        response = self.app.get('/task')
-        tasks = json.loads(response.get_data(as_text=True))
-        self.assertIn(task_data['title'], [task['title'] for task in tasks['disponiveis']])
-
-    def test_update_task(self):
-      # Cria uma tarefa para ser atualizada
-      task_data = {
-          "title": "Tarefa para Atualizar",
-          "description": "Descrição da tarefa para atualizar",
-          "deadline": "2023-12-31",
-          "difficulty": "Média",
-          "runningTime": "00:00:00"
-      }
-
-      # Cria a tarefa
-      create_response = self.app.post('/task', json=task_data)
-      self.assertEqual(create_response.status_code, 200)
-      create_result = json.loads(create_response.get_data(as_text=True))
-      self.assertEqual(create_result['message'], 'Tarefa(s) criada(s) com sucesso!')
-
-      # Obtém o ID da tarefa criada
-      task_id_to_update = create_result['id']
-
-      # Dados atualizados para a tarefa
-      updated_task_data = {
-          "title": "Tarefa Atualizada",
-          "description": "Descrição atualizada da tarefa",
-          "deadline": "2023-12-31",
-          "difficulty": "Difícil",
-          "status": "concluidas",
-          "runningTime": "00:00:00"
-      }
-
-      # Atualiza a tarefa
-      response = self.app.put(f'/task/{task_id_to_update}', json=updated_task_data)
-      self.assertEqual(response.status_code, 200)
-      result = json.loads(response.get_data(as_text=True))
-      self.assertEqual(result['message'], 'Tarefa atualizada com sucesso!')
-
-      # Verifica se a tarefa com o ID especificado foi atualizada no banco de dados
-      get_response = self.app.get('/task')
-      tasks = json.loads(get_response.get_data(as_text=True))
-      updated_task = next((task for task in tasks['concluidas'] if task['id'] == task_id_to_update), None)
-      self.assertIsNotNone(updated_task)
-      self.assertEqual(updated_task['title'], updated_task_data['title'])
-
-    def test_delete_task(self):
-    # Cria uma tarefa para ser excluída
-      task_data = {
-          "title": "Tarefa para Excluir",
-          "description": "Descrição da tarefa para excluir",
-          "deadline": "2023-12-31",
-          "difficulty": "Média",
-          "status": "concluidas",
-          "runningTime": "00:00:00"
-      }
-
-      # Cria a tarefa
-      create_response = self.app.post('/task', json=task_data)
-      self.assertEqual(create_response.status_code, 200)
-      create_result = json.loads(create_response.get_data(as_text=True))
-      self.assertEqual(create_result['message'], 'Tarefa(s) criada(s) com sucesso!')
-
-      # Obtém o ID da tarefa criada
-      task_id_to_delete = create_result['id']
-
-      # Exclui a tarefa
-      response = self.app.delete(f'/task/{task_id_to_delete}')
-      self.assertEqual(response.status_code, 200)
-      result = json.loads(response.get_data(as_text=True))
-      self.assertEqual(result['message'], 'Tarefa excluída com sucesso!')
-
-      # Verifica se a tarefa com o ID especificado foi excluída do banco de dados
-      get_response = self.app.get('/task')
-      tasks = json.loads(get_response.get_data(as_text=True))
-      deleted_task = next((task for task in tasks['concluidas'] if task['id'] == task_id_to_delete), None)
-      self.assertIsNone(deleted_task)
-
-    def test_get_jornadas(self):
+    def test_get_journeys(self):
         # Testa a obtenção de jornadas
-        response = self.app.get('/jornadas')
+        response = self.app.get('/journeys')
         self.assertEqual(response.status_code, 200)
-        jornadas = json.loads(response.get_data(as_text=True))
+        journeys = json.loads(response.get_data(as_text=True))
+        self.assertIsNotNone(journeys)
 
-    def test_criar_jornada(self):
-        # Testa a criação de uma nova jornada
-        jornada_data = {
-            "nome": "Nova Jornada",
-            "tarefas": [
+    def test_post_journey(self):
+        # Dados para criar uma nova jornada
+        new_journey_data = {
+            "name": "New Journey",
+            "missions": [
                 {
-                    "title": "Início da Nova Jornada",
-                    "description": "O herói começa uma nova jornada épica!",
-                    "deadline": "2023-12-01",
-                    "difficulty": "Fácil",
-                    "status": "disponiveis"
+                    "title": "First Mission",
+                    "description": "Description of the first mission",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
                 }
             ]
         }
 
-        response = self.app.post('/jornadas', json=jornada_data)
+        # Cria uma nova jornada
+        response = self.app.post('/journeys', json=new_journey_data)
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.get_data(as_text=True))
-        self.assertEqual(result['message'], 'Jornada criada com sucesso!')
+        self.assertEqual(result['message'], 'Journey created successfully.')
 
-        # Verifica se a nova jornada está presente no banco de dados
-        response = self.app.get('/jornadas')
-        jornadas = json.loads(response.get_data(as_text=True))
-        self.assertIn(jornada_data['nome'], jornadas)
-        self.assertIsNotNone(jornadas[jornada_data['nome']])
-
-    def test_update_jornada(self):
+    def test_update_journey(self):
         # Cria uma jornada para ser atualizada
-        jornada_data = {
-            "nome": "Jornada para Atualizar",
-            "tarefas": [
+        journey_data = {
+            "name": "Journey to Update",
+            "missions": [
                 {
-                    "title": "Tarefa Inicial",
-                    "description": "Descrição da tarefa inicial",
-                    "deadline": "2023-12-01",
-                    "difficulty": "Fácil",
-                    "status": "disponiveis"
+                    "title": "Initial Mission",
+                    "description": "Description of the initial mission",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
                 }
             ]
         }
-
-        # Cria a jornada
-        create_response = self.app.post('/jornadas', json=jornada_data)
+        create_response = self.app.post('/journeys', json=journey_data)
         self.assertEqual(create_response.status_code, 200)
         create_result = json.loads(create_response.get_data(as_text=True))
-        self.assertEqual(create_result['message'], 'Jornada criada com sucesso!')
-
-        # Obtém o nome da jornada criada
-        jornada_name_to_update = create_result['nome_jornada']
+        self.assertEqual(create_result['message'], 'Journey created successfully.')
+        journey_id = create_result['id']
 
         # Dados atualizados para a jornada
-        updated_jornada_data = {
-            "tarefas": [
+        updated_journey_data = {
+            "name": "Updated Journey",
+            "missions": [
                 {
-                    "title": "Nova Tarefa Épica",
-                    "description": "Desafio adicional na jornada!",
-                    "deadline": "2023-12-15",
-                    "difficulty": "Difícil",
-                    "status": "disponiveis"
+                    "title": "Updated Mission",
+                    "description": "Description of the updated mission",
+                    "runningTime": "01:00:00",
+                    "difficulty": "Hard",
+                    "status": "completed",
+                    "deadline": "2023-12-15"
                 }
             ]
         }
 
         # Atualiza a jornada
-        response = self.app.put(f'/jornadas/{jornada_name_to_update}', json=updated_jornada_data)
+        response = self.app.put(f'/journeys/{journey_id}', json=updated_journey_data)
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.get_data(as_text=True))
-        self.assertEqual(result['message'], f'Jornada {jornada_name_to_update} atualizada com sucesso!')
+        self.assertEqual(result['message'], 'Journey updated successfully.')
 
-        # Verifica se a jornada com o nome especificado foi atualizada no banco de dados
-        get_response = self.app.get('/jornadas')
-        jornadas = json.loads(get_response.get_data(as_text=True))
-        updated_jornada = jornadas.get(jornada_name_to_update)
-        self.assertIsNotNone(updated_jornada)
-        self.assertEqual(updated_jornada['tarefas'][0]['title'], updated_jornada_data['tarefas'][0]['title'])
-
-
-    def test_delete_jornada(self):
-        # Cria uma jornada para ser excluída
-        jornada_data = {
-            "nome": "Jornada para Excluir",
-            "tarefas": [
+    def test_create_mission(self):
+        # Cria uma jornada
+        journey_data = {
+            "name": "Journey for Mission",
+            "missions": [
                 {
-                    "title": "Tarefa Inicial",
-                    "description": "Descrição da tarefa inicial",
-                    "deadline": "2023-12-01",
-                    "difficulty": "Fácil",
-                    "status": "disponiveis"
+                    "title": "Initial Mission",
+                    "description": "Description of the initial mission",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
                 }
             ]
         }
+        create_journey_response = self.app.post('/journeys', json=journey_data)
+        self.assertEqual(create_journey_response.status_code, 200)
+        journey_id = json.loads(create_journey_response.get_data(as_text=True))['id']
 
-        # Cria a jornada
-        create_response = self.app.post('/jornadas', json=jornada_data)
-        self.assertEqual(create_response.status_code, 200)
-        create_result = json.loads(create_response.get_data(as_text=True))
-        self.assertEqual(create_result['message'], 'Jornada criada com sucesso!')
+        # Dados da nova missão
+        mission_data = {
+            "title": "New Mission",
+            "description": "Description of the new mission",
+            "runningTime": "00:00:00",
+            "difficulty": "Medium",
+            "status": "available",
+            "deadline": "2023-12-14"
+        }
 
-        # Obtém o nome da jornada criada
-        jornada_name_to_delete = create_result['nome_jornada']
-
-        # Exclui a jornada
-        response = self.app.delete(f'/jornadas/{jornada_name_to_delete}')
+        # Adiciona uma nova missão à jornada
+        response = self.app.post(f'/journeys/{journey_id}/missions', json=mission_data)
         self.assertEqual(response.status_code, 200)
         result = json.loads(response.get_data(as_text=True))
-        self.assertEqual(result['message'], f'Jornada {jornada_name_to_delete} excluída com sucesso!')
+        self.assertEqual(result['message'], 'Mission created successfully.')
 
-        # Verifica se a jornada com o nome especificado foi excluída do banco de dados
-        get_response = self.app.get('/jornadas')
-        jornadas = json.loads(get_response.get_data(as_text=True))
-        deleted_jornada = jornadas.get(jornada_name_to_delete)
-        self.assertIsNone(deleted_jornada)
+    def test_update_mission(self):
+        # Cria uma jornada com uma missão para ser atualizada
+        journey_data = {
+            "name": "Journey for Mission Update",
+            "missions": [
+                {
+                    "title": "Mission to Update",
+                    "description": "Description of the mission to update",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
+                }
+            ]
+        }
+        create_journey_response = self.app.post('/journeys', json=journey_data)
+        self.assertEqual(create_journey_response.status_code, 200)
+        journey_id = json.loads(create_journey_response.get_data(as_text=True))['id']
 
+        # Dados atualizados para a missão
+        updated_mission_data = {
+            "title": "Updated Mission",
+            "description": "Description of the updated mission",
+            "runningTime": "02:00:00",
+            "difficulty": "Hard",
+            "status": "completed",
+            "deadline": "2023-12-16"
+        }
 
-    def test_get_jornada(self):
-      # Cria uma Jornada Uau para ser obtida
-      jornada_data = {
-          "nome": "Jornada Uau",
-          "tarefas": [
-              {
-                  "title": "Tarefa Inicial",
-                  "description": "Descrição da tarefa inicial",
-                  "deadline": "2023-12-01",
-                  "difficulty": "Fácil",
-                  "status": "disponiveis"
-              }
-          ]
-      }
+        # Atualiza a missão
+        response = self.app.put(f'/journeys/{journey_id}/missions/1', json=updated_mission_data)  # ID começa em 1
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.get_data(as_text=True))
+        self.assertEqual(result['message'], 'Mission updated successfully.')
 
-      # Cria a jornada
-      create_response = self.app.post('/jornadas', json=jornada_data)
-      self.assertEqual(create_response.status_code, 200)
-      create_result = json.loads(create_response.get_data(as_text=True))
-      self.assertEqual(create_result['message'], 'Jornada criada com sucesso!')
+    def test_delete_mission(self):
+        # Cria uma jornada com uma missão para ser excluída
+        journey_data = {
+            "name": "Journey for Mission Deletion",
+            "missions": [
+                {
+                    "title": "Mission to Delete",
+                    "description": "Description of the mission to delete",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
+                }
+            ]
+        }
+        create_journey_response = self.app.post('/journeys', json=journey_data)
+        self.assertEqual(create_journey_response.status_code, 200)
+        journey_id = json.loads(create_journey_response.get_data(as_text=True))['id']
 
-      # Obtém o nome da jornada criada
-      jornada_name_to_get = "Jornada Uau"
+        # Exclui a missão
+        response = self.app.delete(f'/journeys/{journey_id}/missions/1')  # ID começa em 1
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.get_data(as_text=True))
+        self.assertEqual(result['message'], 'Mission deleted successfully.')
 
-      # Testa a obtenção da jornada específica
-      response = self.app.get(f'/jornadas/{jornada_name_to_get}')
-      self.assertEqual(response.status_code, 200)
-      jornada = json.loads(response.get_data(as_text=True))
+    def test_set_setted_journey(self):
+        # Cria uma jornada para ser setada
+        journey_data = {
+            "name": "Journey to Set",
+            "missions": [
+                {
+                    "title": "Mission to Set",
+                    "description": "Description of the mission to set",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
+                }
+            ]
+        }
+        create_journey_response = self.app.post('/journeys', json=journey_data)
+        self.assertEqual(create_journey_response.status_code, 200)
+        journey_id = json.loads(create_journey_response.get_data(as_text=True))['id']
 
-      self.assertIn('jornada', jornada)
-      self.assertEqual(jornada['jornada']['tarefas'], jornada_data['tarefas'])
+        # Define a jornada como setada
+        response = self.app.put(f'/setted_journey/{journey_id}')
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.get_data(as_text=True))
+        self.assertEqual(result['message'], f'Setted journey with id {journey_id} successfully.')
 
+    def test_get_setted_journey(self):
+        # Cria uma jornada para ser setada e depois buscada
+        journey_data = {
+            "name": "Journey to Get",
+            "missions": [
+                {
+                    "title": "Mission to Get",
+                    "description": "Description of the mission to get",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
+                }
+            ]
+        }
+        create_journey_response = self.app.post('/journeys', json=journey_data)
+        self.assertEqual(create_journey_response.status_code, 200)
+        journey_id = json.loads(create_journey_response.get_data(as_text=True))['id']
+
+        # Define a jornada como setada
+        set_response = self.app.put(f'/setted_journey/{journey_id}')
+        self.assertEqual(set_response.status_code, 200)
+
+        # Obtém a jornada setada
+        get_response = self.app.get('/setted_journey')
+        self.assertEqual(get_response.status_code, 200)
+        result = json.loads(get_response.get_data(as_text=True))
+        self.assertEqual(result['id'], journey_id)
+
+    def test_delete_journey(self):
+        # Cria uma jornada para ser excluída
+        journey_data = {
+            "name": "Journey to Delete",
+            "missions": [
+                {
+                    "title": "Mission to Delete",
+                    "description": "Description of the mission to delete",
+                    "runningTime": "00:00:00",
+                    "difficulty": "Easy",
+                    "status": "available",
+                    "deadline": "2023-12-13"
+                }
+            ]
+        }
+        create_journey_response = self.app.post('/journeys', json=journey_data)
+        self.assertEqual(create_journey_response.status_code, 200)
+        journey_id = json.loads(create_journey_response.get_data(as_text=True))['id']
+
+        # Exclui a jornada
+        response = self.app.delete(f'/journeys/{journey_id}')
+        self.assertEqual(response.status_code, 200)
+        result = json.loads(response.get_data(as_text=True))
+        self.assertEqual(result['message'], 'Journey deleted successfully.')
 
 if __name__ == '__main__':
     unittest.main()
