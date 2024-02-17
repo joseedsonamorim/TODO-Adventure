@@ -36,11 +36,11 @@
         <div
           cdkDropList
           #disponiveis="cdkDropList"
-          id="disponiveis"
+          id="available"
           [cdkDropListData]="missoesDisponiveis"
           [cdkDropListConnectedTo]="[emAndamento, concluidas]"
           class="example-list"
-          (cdkDropListDropped)="drop($event , 'disponiveis')">
+          (cdkDropListDropped)="drop($event , 'available')">
           <div class="example-box" *ngFor="let item of missoesDisponiveis" cdkDrag [cdkDragData]="item">
             <div class="container">
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -88,11 +88,11 @@
         <div
           cdkDropList
           #emAndamento="cdkDropList"
-          id="emAndamento"
+          id="in progress"
           [cdkDropListData]="missoesEmAndamento"
           [cdkDropListConnectedTo]="[concluidas, disponiveis]"
           class="example-list"
-          (cdkDropListDropped)="drop($event, 'emAndamento')">
+          (cdkDropListDropped)="drop($event, 'in progress')">
           <div class="example-box" *ngFor="let item of missoesEmAndamento" cdkDrag [cdkDragData]="item">
             <div class="container">
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -125,11 +125,11 @@
         <div
           cdkDropList
           #concluidas="cdkDropList"
-          id="concluidas"
+          id="completed"
           [cdkDropListData]="missoesConcluidas"
           [cdkDropListConnectedTo]="[emAndamento, disponiveis]"
           class="example-list"
-          (cdkDropListDropped)="drop($event, 'concluidas')">
+          (cdkDropListDropped)="drop($event, 'completed')">
           <div class="example-box" *ngFor="let item of missoesConcluidas" cdkDrag [cdkDragData]="item">
             <div class="container" >
               <div style="display: flex; flex-direction: row; justify-content: space-between;">
@@ -159,7 +159,7 @@
 
 <!-- Rodapé -->
 <div class="footer-container">
-  <div class="create-task">
+  <div class="create-task" *ngIf="settedJourney">
     <div class="circle">
       <!-- Ícone de Adição -->
       <button mat-icon-button (click)="openDialogMission(mission, false, 'tarefa')">
