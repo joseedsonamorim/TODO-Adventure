@@ -1,0 +1,70 @@
+.d-flex {
+    display: flex;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.barra-background, .barra-progresso {
+    border-radius: 8px;
+}
+
+.barra-background {
+    background: #ccc;
+    height: 4px;
+    width: 100%;
+}
+
+.barra-progresso {
+    background: #14965f;
+    height: 8px;
+    margin-top: -6px;
+    transition: all .5s;
+    width: 44%;
+}
+
+.font-regular {
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+.font-bold {
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+
+.font-size-small {
+    font-family: 'Roboto';
+    font-size: .8em;
+}
+
+.align-items-center {
+    align-items: center;
+}
+
+
+.margin-bottom-1 {
+    margin-bottom: 8px;
+}
+
+.treasure{
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  top: -13px;
+  left: 0px;
+}
+
+.warrior{
+  display: flex;
+  justify-content: flex-end;
+  padding-bottom: 50px;
+  position: relative;
+  top: -17px;
+  left: 10px;
+}

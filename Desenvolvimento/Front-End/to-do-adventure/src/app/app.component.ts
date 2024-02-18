@@ -1,5 +1,5 @@
 import { AppService } from './service/app.service';
-import { Component } from '@angular/core';
+import { Component, VERSION } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mission.component';
@@ -37,6 +37,9 @@ export class AppComponent {
   min: any = '0' + 0;
   hr: any = '0' + 0;
 
+  name = 'Angular ' + VERSION.major;
+  progresso: number = 10;
+
   constructor(
     public dialog: MatDialog,
     public appService: AppService,
@@ -54,6 +57,8 @@ export class AppComponent {
         this.missoesConcluidas = this.settedJourney.missions.filter((mission: { status: string; }) => mission.status === 'completed');
         this.missoesEmAndamento = this.settedJourney.missions.filter((mission: { status: string; }) => mission.status === 'in progress');
         localStorage.setItem("settedJourney", this.settedJourney.id);
+        this.somarProgresso();
+
       },
       error => console.error('Não há jornada setada', error)
     );
@@ -165,5 +170,14 @@ export class AppComponent {
     clearInterval(this.startTimer);
     this.rodandoCronometro = false;
     this.hr = this.min = this.sec = '0' + 0;
+  }
+
+
+  somarProgresso() {
+    const numTarefasConcluidas = this.missoesConcluidas.length;
+    const numTotalTarefas = this.missoesDisponiveis.length + this.missoesEmAndamento.length + numTarefasConcluidas;
+    const porcentagemConcluidas = (numTarefasConcluidas / numTotalTarefas) * 100;
+    this.progresso = porcentagemConcluidas;
+
   }
 }
