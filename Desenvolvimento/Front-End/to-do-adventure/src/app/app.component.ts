@@ -40,6 +40,8 @@ export class AppComponent {
   name = 'Angular ' + VERSION.major;
   progresso: number = 10;
 
+  flagRetornoAndamento: boolean = false;
+
   constructor(
     public dialog: MatDialog,
     public appService: AppService,
@@ -65,40 +67,123 @@ export class AppComponent {
 
   }
 
-  drop(event: CdkDragDrop<any[]>, newList: string) {
+ drop(event: CdkDragDrop<any[]>, newList: string) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
-      if(event.container.id == 'in progress') {
+      if(event.container.id == 'in progress' &&  event.previousContainer.id !== 'completed') {
         if (this.missoesEmAndamento.length) { return; }
         const array_data = event.previousContainer.data[event.previousIndex].runningTime.split(':');
         this.sec = parseInt(array_data[2]) < 10 ? '0' + parseInt(array_data[2]) : parseInt(array_data[2]);
         this.min = parseInt(array_data[1]) < 10 ? '0' + parseInt(array_data[1]) : parseInt(array_data[1]);
         this.hr = parseInt(array_data[0]) < 10 ? '0' + parseInt(array_data[0]) : parseInt(array_data[0]);
         this.mostrarCronometro = true;
+
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
         this.startCronometro();
+        const movedItem = {...event.container.data[event.currentIndex],
+          status: newList,
+        };
+        this.updateMission(movedItem);
       }
-      if(event.previousContainer.id == 'in progress') {
+      if(event.container.id == 'available') {
+        let dialogRef
+        const data = {
+          descricao: 'Você tem certeza que deseja cancelar o andamento da tarefa?',
+          flagDelete: false
+        }
+        dialogRef = this.dialog.open( DialogWarningsComponent, {data});
+        dialogRef.afterClosed().subscribe(result => {
+          this.flagRetornoAndamento = result;
+          if(this.flagRetornoAndamento){
+            event.previousContainer.data[event.previousIndex].runningTime = '00:00:00'
+
+            transferArrayItem(
+              event.previousContainer.data,
+              event.container.data,
+              event.previousIndex,
+              event.currentIndex,
+            );
+            this.mostrarCronometro = false;
+            this.stopCronometro();
+            const movedItem = {...event.container.data[event.currentIndex],
+              status: newList,
+            };
+            this.updateMission(movedItem);
+
+          }
+
+        });
+
+      }
+       if(event.previousContainer.id == 'in progress' && event.container.id !== 'available') {
         this.stopCronometro();
         event.previousContainer.data[event.previousIndex].runningTime = [this.hr, this.min, this.sec].join(':');
         this.mostrarCronometro = false;
+
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex,
+        );
+        const movedItem = {...event.container.data[event.currentIndex],
+          status: newList,
+        };
+        this.updateMission(movedItem);
       }
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-      const movedItem = {...event.container.data[event.currentIndex],
-        status: newList,
-      };
-      this.updateMission(movedItem);
+
+      if(event.previousContainer.id == 'completed' && event.container.id == 'in progress') {
+        let dialogRef
+        const data = {
+          descricao: 'Você deseja reiniciar essa tarefa? Se sim, seu andamento será zerado',
+          flagDelete: false
+        }
+        dialogRef = this.dialog.open( DialogWarningsComponent, {data});
+        dialogRef.afterClosed().subscribe(result => {
+          this.flagRetornoAndamento = result;
+          if(this.flagRetornoAndamento){
+            event.previousContainer.data[event.previousIndex].runningTime = '00:00:00'
+            const array_data = event.previousContainer.data[event.previousIndex].runningTime.split(':');
+            this.sec = parseInt(array_data[2]) < 10 ? '0' + parseInt(array_data[2]) : parseInt(array_data[2]);
+            this.min = parseInt(array_data[1]) < 10 ? '0' + parseInt(array_data[1]) : parseInt(array_data[1]);
+            this.hr = parseInt(array_data[0]) < 10 ? '0' + parseInt(array_data[0]) : parseInt(array_data[0]);
+            this.mostrarCronometro = true;
+
+
+            transferArrayItem(
+              event.previousContainer.data,
+              event.container.data,
+              event.previousIndex,
+              event.currentIndex,
+            );
+
+            this.startCronometro();
+            const movedItem = {...event.container.data[event.currentIndex],
+              status: newList,
+            };
+            this.updateMission(movedItem);
+
+          }
+        });
+
+      }
+
+
+
     }
   }
 
   openDialogMission(data: any, isDelete?: boolean, tipoDialog?: string){
     let dialogRef
     if(isDelete){
+      data.descricao = 'Você tem certeza que deseja excluir essa missão?';
+      data.flagDelete = true;
       dialogRef = this.dialog.open( DialogWarningsComponent, {data});
       dialogRef.afterClosed().subscribe(result => {
         this.getSettedJourney();
@@ -171,7 +256,6 @@ export class AppComponent {
     this.rodandoCronometro = false;
     this.hr = this.min = this.sec = '0' + 0;
   }
-
 
   somarProgresso() {
     const numTarefasConcluidas = this.missoesConcluidas.length;
