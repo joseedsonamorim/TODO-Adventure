@@ -1,5 +1,5 @@
 import { AppService } from './../service/app.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Mission from '../shared/models/mission-model';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -12,8 +12,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class DialogWarningsComponent implements OnInit {
 
+  @Input() descricao!: string
+
   mission: Mission;
   journeyID: number;
+  flagDelete: boolean = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -21,10 +24,18 @@ export class DialogWarningsComponent implements OnInit {
     public appService : AppService
     ) {
       this.mission = data;
+      this.descricao = data.descricao;
+      this.flagDelete = data.flagDelete;
       this.journeyID = Number(localStorage.getItem("settedJourney"));
    }
 
   ngOnInit(): void {
+  }
+
+  confirmAction(){
+    if(this.flagDelete){
+      this.deleteMission()
+    }
   }
 
   deleteMission(){

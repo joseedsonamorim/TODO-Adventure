@@ -1,0 +1,71 @@
+.d-flex {
+  display: flex;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.barra-background, .barra-progresso {
+  border-radius: 8px;
+}
+
+.barra-background {
+  background: #ffff;
+  height: 15px;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.barra-progresso {
+  background: #5C4033;
+  height: 15px;
+  transition: all .5s;
+  width: 44%;
+  margin-top: -15px; /* ajuste o valor conforme necessário */
+}
+
+.font-regular {
+  font-family: 'Aclonica';
+  font-weight: 300;
+}
+
+.font-bold {
+  font-family: 'Aclonica';
+  font-weight: 500;
+}
+
+.font-size-small {
+  font-family: 'Aclonica';
+  font-size: .8em;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.treasure{
+display: flex;
+justify-content: flex-end;
+position: relative;
+top: -40px;
+left: -10px;
+}
+
+.warrior{
+display: flex;
+justify-content: flex-end;
+padding-bottom: 50px;
+position: relative;
+top: -50px;
+left: 10px;
+}
+
+h1,h2,h3,h4,h5,h6, p, span {
+font-family: 'Aclonica', sans-serif;
+}
+

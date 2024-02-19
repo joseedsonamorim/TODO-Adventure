@@ -19,7 +19,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatIconModule} from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatExpansionModule} from '@angular/material/expansion'
+import {MatExpansionModule} from '@angular/material/expansion';
+import { ProgressBarComponent } from './shared/models/progress-bar/progress-bar.component'
 
 
 
@@ -28,7 +29,8 @@ import {MatExpansionModule} from '@angular/material/expansion'
     AppComponent,
     DialogFormMissionComponent,
     DialogWarningsComponent,
-    DialogHeroJorneyComponent
+    DialogHeroJorneyComponent,
+    ProgressBarComponent
   ],
   entryComponents:[DialogFormMissionComponent],
   imports: [

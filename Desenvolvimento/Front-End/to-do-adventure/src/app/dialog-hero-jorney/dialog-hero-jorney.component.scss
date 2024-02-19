@@ -1,6 +1,4 @@
-.mat-form-field + .mat-form-field {
-  margin-left: 8px;
-}
+$font-color: #5C4033;
 
 .container {
   display: flex;
@@ -9,19 +7,83 @@
   background-color: #2C7F7F80;
   padding: 10px;
   border-radius: 25px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); Adiciona sombra nos itens */
+}
+
+.mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+
+.example-form, .example-full-width {
+  width: 100%;
 }
 
 .example-form {
   min-width: 150px;
   max-width: 500px;
-  width: 100%;
-}
-
-.example-full-width {
-  width: 100%;
 }
 
 td {
   padding-right: 8px;
+}
+
+h1, h2, h3, h4, h5, h6, p, span {
+  font-family: 'Aclonica', sans-serif;
+  color: $font-color;
+}
+
+h1 {
+  text-align: center;
+}
+
+.mat-dialog-content {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #FEF6DA;
+}
+
+.mat-card {
+  margin: 20px;
+  padding: 20px;
+  background-color: #FEEFC1;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.mat-card-subtitle {
+  font-size: 1.2em;
+  color: #666;
+}
+
+.mat-accordion {
+  margin-top: 20px;
+}
+
+.mat-expansion-panel-header {
+  background-color: #ddd;
+}
+
+.container {
+  margin: 10px 0;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #999;
+}
+
+.mat-action-row, button {
+  margin-top: 20px;
+}
+
+button{
+  background-color: #5C4033;
+  color: #FFFFFF; /* Isso fará com que o texto seja branco. */
+}
+
+.example-full-width{
+  background-color: #FEEFC1;
+
 }
