@@ -83,6 +83,7 @@
         <h2>Em Andamento</h2>
 
         <div *ngIf="mostrarCronometro">
+          <span style="color: red"> {{ flagIntervalo ? 'INTERVALO' : ''}}</span>
           <div class="text-lg font-medium">
             <span>{{hr}} : </span>
             <span>{{min}} : </span>
