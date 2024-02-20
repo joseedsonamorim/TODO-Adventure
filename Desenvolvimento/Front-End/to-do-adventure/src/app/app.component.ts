@@ -6,6 +6,7 @@ import { DialogFormMissionComponent } from './dialog-form-mission/dialog-form-mi
 import Mission from './shared/models/mission-model';
 import { DialogWarningsComponent } from './dialog-warnings/dialog-warnings.component';
 import { DialogHeroJorneyComponent } from './dialog-hero-jorney/dialog-hero-jorney.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-root',
@@ -41,10 +42,14 @@ export class AppComponent {
   progresso: number = 10;
 
   flagRetornoAndamento: boolean = false;
+  flagIntervalo: boolean = false;
+  flagContinuarTarefa: boolean = false;
+  intervaloCount: number = 1;
 
   constructor(
     public dialog: MatDialog,
     public appService: AppService,
+    private _snackBar: MatSnackBar,
     ) {}
 
   ngOnInit() {
@@ -221,6 +226,10 @@ export class AppComponent {
   }
 
   startCronometro() {
+    this.flagContinuarTarefa = false;
+    this.flagIntervalo = false;
+    this.intervaloCount = 1;
+
     if(!this.rodandoCronometro) {
       this.rodandoCronometro = true;
       this.botaoCronometro = "pause";
@@ -232,6 +241,86 @@ export class AppComponent {
           this.min++;
           this.min = this.min < 10 ? '0' + this.min : this.min;
           this.sec = '0' + 0;
+        }
+
+        if(this.sec == 5 && !this.flagIntervalo && this.intervaloCount <= 3){
+          this.openSnackBar('Modo de intervalo iniciado.\n Você terá 5 minutos para descansar!');
+          this.flagIntervalo = true;
+
+        }
+
+        if(this.sec == 5 && !this.flagIntervalo && this.intervaloCount === 4){
+          this.openSnackBar('Modo de intervalo iniciado.\n Você terá 15 minutos para descansar!');
+          this.flagIntervalo = true;
+
+        }
+
+        if(this.sec == 10 && this.flagIntervalo && this.intervaloCount <= 3 ){
+          this.intervaloCount++;
+          let dialogRef
+          const data = {
+            descricao: 'Seu intervalo acabou, precisa de mais 30 minutos para concluir a tarefa?',
+            flagDelete: false
+          }
+            dialogRef = this.dialog.open( DialogWarningsComponent, {data});
+            dialogRef.afterClosed().subscribe(result => {
+              this.flagContinuarTarefa = result;
+              if(this.flagContinuarTarefa){
+                this.sec = '00';
+                this.min = '00';
+                this.hr = '00';
+                this.flagIntervalo = false;
+              } else {
+                this.flagIntervalo = false;
+                this.min =  this.sec !== '00' ? 30 * (this.intervaloCount - 1) : '00';
+                this.sec = '00' ;
+                this.hr = this.min >= 60 ? this.min / 60 : '00';
+                if(this.min == 60){
+                  this.hr = '01';
+                  this.min = '00';
+                }
+                if(this.hr == 1.5){
+                  this.hr = '01';
+                  this.min = '30';
+                }
+                if(this.hr == 2){
+                  this.min = '00';
+                }
+                this.stopCronometro();
+                this.openSnackBar('mova a tarefa para concluidas!')
+              }
+
+            });
+
+        }
+
+        if(this.sec == 15 && this.flagIntervalo && this.intervaloCount == 4){
+          let dialogRef
+          const data = {
+            descricao: 'Seu intervalo acabou, precisa de mais 30 minutos para concluir a tarefa?',
+            flagDelete: false
+          }
+            dialogRef = this.dialog.open( DialogWarningsComponent, {data});
+            dialogRef.afterClosed().subscribe(result => {
+              this.flagContinuarTarefa = result;
+              if(this.flagContinuarTarefa){
+                this.sec = '00';
+                this.min = '00';
+                this.hr = '00';
+                this.flagIntervalo = false;
+                this.intervaloCount = 1;
+              } else {
+                this.flagIntervalo = false;
+                this.intervaloCount = 1;
+                this.sec = '00';
+                this.min = '10';
+                this.hr = '02';
+                this.stopCronometro();
+                this.openSnackBar('mova a tarefa para concluidas!')
+              }
+
+            });
+
         }
 
         if(this.min === 60) {
@@ -264,4 +353,11 @@ export class AppComponent {
     this.progresso = porcentagemConcluidas;
 
   }
+
+  openSnackBar(message: string) {
+    this._snackBar.open(message, "ok", {
+      duration: 5000, horizontalPosition: 'center',
+      verticalPosition: 'top',});
+  }
+
 }
