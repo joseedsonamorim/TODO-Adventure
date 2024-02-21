@@ -1,0 +1,225 @@
+/* Importa a fonte Aclonica do Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Aclonica&display=swap');
+
+/* Cores base */
+$primary: #FEF6DA;
+$secondary: #FEEFC1;
+$accent: #FEEFC1;
+$font-color: #5C4033; /* Preto */
+
+
+/* Matcards */
+$card-width: 400px;
+$card-border-radius: 10px;
+$card-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+$card-margin: 1em;
+$card-bg-color: #FEEFC1;
+
+/* Cabeçalho */
+$header-padding: 1em;
+$logo-width: 300px;
+$user-icon-font-size: 2em;
+$user-icon-margin-right: 1em;
+$greeting-font-size: 1.2em;
+
+/* Progresso */
+$progress-bar-padding: 1em;
+
+/* Contêiner de cards */
+$card-container-padding: 2em;
+$card-container-bg-color: #FEF6DA; /* Nova cor de fundo */
+
+/* Exemplo */
+$example-container-padding: 1em;
+$example-list-padding: 0.5em;
+$example-box-bg-color: #fff;
+$example-box-padding: 0.5em;
+$example-box-margin-bottom: 0.5em;
+$example-box-border: 1px solid #ddd;
+$example-box-border-radius: 4px;
+
+/* Container */
+$container-padding: 1em;
+
+/* Títulos */
+$h2-font-size: 1.5em;
+$h2-margin-bottom: 1em;
+$h4-font-size: 1.2em;
+$h4-margin-bottom: 0.5em;
+
+/* Detalhes */
+$details-margin-top: 1em;
+$details-font-size: 0.8em;
+
+/* Rodapé */
+$footer-container-padding: 1em;
+
+/* Tarefa */
+$create-task-padding: 1em;
+$create-task-border-radius: 5px;
+$create-task-transition: all 0.2s ease-in-out;
+
+/* Círculo */
+$circle-width: 50px;
+$circle-height: 50px;
+$circle-border-radius: 50%;
+$circle-bg-color: #5C4033;
+$circle-margin-bottom: 0.5em;
+
+/* Ícone Plus */
+$plus-icon-font-size: 2em;
+
+/* Texto da Tarefa */
+$task-text-font-size: 1em;
+$task-text-font-weight: bold;
+
+/* Cabeçalho */
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: $header-padding;
+  background-color: $accent;
+  color: $accent;
+}
+
+.logo {
+  width: $logo-width;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.user-info {
+  display: flex;
+  align-items: center;
+
+  .user-icon {
+    font-size: $user-icon-font-size;
+    margin-right: $user-icon-margin-right;
+  }
+
+  .greeting {
+    font-size: $greeting-font-size;
+  }
+}
+
+/* Progresso */
+.progress-bar {
+  background-color: #FEEFC1;
+  color: #FEEFC1;
+  padding: $progress-bar-padding;
+}
+
+/* Contêiner de cards */
+.card-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  padding: $card-container-padding;
+  background-color: $secondary;
+  height: 65vh;
+  background-color: $card-container-bg-color;
+}
+
+
+.mat-card {
+  width: $card-width;
+  border-radius: $card-border-radius;
+  box-shadow: $card-shadow;
+  margin: $card-margin;
+  background-color: $card-bg-color;
+  transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  overflow-y: auto;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.example-container {
+  padding: $example-container-padding;
+}
+
+.example-list {
+  padding: $example-list-padding;
+  overflow: auto;
+}
+
+.example-box {
+  background-color: $example-box-bg-color;
+  cursor: pointer;
+  padding: $example-box-padding;
+  margin-bottom: $example-box-margin-bottom;
+  border: $example-box-border;
+  border-radius: $example-box-border-radius;
+}
+
+.container {
+  padding: $container-padding;
+}
+
+h2 {
+  font-size: $h2-font-size;
+  margin-bottom: $h2-margin-bottom;
+}
+
+h4 {
+  font-size: $h4-font-size;
+  margin-bottom: $h4-margin-bottom;
+}
+
+.details {
+  margin-top: $details-margin-top;
+  font-size: $details-font-size;
+}
+
+/* Rodapé */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  padding: $footer-container-padding;
+  background-color: $secondary;
+  color: $primary;
+}
+
+.create-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: $create-task-padding;
+  border-radius: $create-task-border-radius;
+  cursor: pointer;
+  transition: $create-task-transition;
+}
+
+.circle {
+  width: $circle-width;
+  height: $circle-height;
+  border-radius: $circle-border-radius;
+  background-color: #5C4033;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: $circle-margin-bottom;
+}
+
+.plus-icon {
+  font-size: $plus-icon-font-size;
+  color: #ffff;
+}
+
+.task-text {
+  font-size: $task-text-font-size;
+  font-weight: $task-text-font-weight;
+}
+
+
+h1,h2,h3,h4,h5,h6, p, span {
+  font-family: 'Aclonica', sans-serif;
+  color: $font-color;
+}

@@ -1,0 +1,95 @@
+{
+  "journeys": [
+    {
+      "id": "1",
+      "name": "Epic Journey",
+      "missions": [
+        {
+          "id": "1",
+          "title": "Start of the Journey",
+          "description": "The hero begins his epic journey!",
+          "runningTime": "00:00:00",
+          "difficulty": "Easy",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "2",
+          "title": "Meeting the Master",
+          "description": "The hero meets the wise master to receive guidance.",
+          "runningTime": "00:00:00",
+          "difficulty": "Medium",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "3",
+          "title": "Epic Battle",
+          "description": "The hero faces an epic battle against the supreme villain!",
+          "runningTime": "00:00:00",
+          "difficulty": "High",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "deadline": "2023-12-13",
+          "description": "The hero begins his epic journey!",
+          "difficulty": "Easy",
+          "runningTime": "00:00:00",
+          "title": "Start of the Journey",
+          "status": "available",
+          "id": "4"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Help me, Lord",
+      "missions": [
+        {
+          "id": "4",
+          "title": "Journey Task",
+          "description": "Journey task",
+          "runningTime": "00:00:00",
+          "difficulty": "Medium",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "5",
+          "title": "This here please",
+          "description": "Something",
+          "runningTime": "00:00:00",
+          "difficulty": "Hard",
+          "status": "available",
+          "deadline": "2023-12-13"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "name": "Dragon's Cave",
+      "missions": [
+        {
+          "id": "6",
+          "title": "Go to the Forest",
+          "difficulty": "Easy",
+          "description": "Go to the forest to find the dragon's cave",
+          "runningTime": "00:00:00",
+          "status": "available",
+          "deadline": "2023-12-13"
+        },
+        {
+          "id": "7",
+          "title": "Kill the Dragon",
+          "difficulty": "Hard",
+          "description": "Kill the dragon and get its scales",
+          "runningTime": "00:00:00",
+          "status": "available",
+          "deadline": "2023-12-13"
+        }
+      ]
+    }
+  ],
+  "setted_journey": null
+}

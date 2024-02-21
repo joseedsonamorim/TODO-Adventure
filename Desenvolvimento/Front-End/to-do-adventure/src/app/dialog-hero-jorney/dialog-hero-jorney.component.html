@@ -1,0 +1,110 @@
+<h1 mat-dialog-title>JORNADA DO HÉROI</h1>
+
+<mat-dialog-content class="mat-typography" style="height: 50vh;">
+  <div  style="display: flex; flex-direction: row;">
+    <div style="width: 30vw;">
+
+      <mat-card>
+
+        <mat-card-subtitle>Aqui você encontra as jorandas disponiveis</mat-card-subtitle>
+        <mat-accordion [multi]="false">
+        <div *ngFor="let jorney of jorneys let i = index">
+
+            <mat-expansion-panel (opened)="panelOpenState = true; openJorney(jorney)"
+                                 (closed)="panelOpenState = false" >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                 {{jorney.name}}
+                </mat-panel-title>
+
+              </mat-expansion-panel-header>
+
+
+              <div *ngFor="let task of jorney.missions">
+                  <div class="container">
+                    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+                      <h4>{{task.title}}</h4><br>
+                    </div>
+                    <div class="details">
+                      <h5>Dificuldade: {{task.difficulty}}</h5>
+                      <h5>Prazo: {{setDeadline(task.deadline)}}</h5>
+                    </div>
+                    <p>{{task.description}}</p>
+                  </div>
+                </div>
+                <mat-action-row>
+                  <button mat-button color="warn" (click)="selecionaJornada(jorney.id)">Selecionar Jornada</button>
+                </mat-action-row>
+            </mat-expansion-panel>
+
+          </div>
+
+        </mat-accordion>
+
+      </mat-card>
+
+    </div>
+    <div>
+      <div *ngIf="flagNovaJornada" style="padding: 10px; width: 30vw; background-color: #FEEFC1;">
+        <h1> Nova Jornada</h1>
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Nome da Jornada</mat-label>
+          <input matInput  [(ngModel)]="nomeJornada" [ngModelOptions]="{standalone: true}">
+        </mat-form-field>
+        <div *ngIf="novaTarefa">
+          <div *ngFor="let item of novaTarefa">
+            <span>{{item}}</span>
+          </div>
+        </div>
+        <div style="display: flex;flex-direction: row ;justify-content: flex-end; padding-bottom: 5px;">
+          <button mat-icon-button (click)="adicionarTarefa()" style="background-color: rgb(161, 159, 159);">
+            <mat-icon class="plus-icon">create</mat-icon>
+          </button>
+          <!-- <span style="padding-top: 11px;">Adicionar Tarefa</span> -->
+        </div>
+
+
+        <form class="example-form" *ngIf="tarefaNovaJornada">
+          <table class="example-full-width" cellspacing="0"><tr>
+            <td><mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Título</mat-label>
+              <input matInput  [(ngModel)]="mission.title" value="{{mission?.title}}" [ngModelOptions]="{standalone: true}">
+            </mat-form-field></td>
+            <td><mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Prazo</mat-label>
+              <input type="date" matInput [(ngModel)]="mission.deadline" value="{{deadline}}" [ngModelOptions]="{standalone: true}">
+            </mat-form-field></td>
+          </tr></table>
+
+          <p>
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Descrição</mat-label>
+              <textarea matInput placeholder="Ex. Need to kill 100 dragons from forest" [(ngModel)]="mission.description" value="{{mission?.description}}" [ngModelOptions]="{standalone: true}"></textarea>
+            </mat-form-field>
+          </p>
+
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Dificuldade</mat-label>
+            <mat-select [(ngModel)]="mission.difficulty" [(value)]="selectedDifficulty" [ngModelOptions]="{standalone: true}">
+              <mat-option value="Easy">Fácil</mat-option>
+              <mat-option value="Medium">Média</mat-option>
+              <mat-option value="Hard">Difícil</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-button (click)="adicionaTarefaNovaJornada()">Adicionar</button>
+        </form>
+        <!-- <div *ngIf="adicionarTarefa()">
+        </div> -->
+      </div>
+    </div>
+
+  </div>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button  mat-button  (click)="FechaOuCriaJornada()">{{actionAddNovajornada}}</button>
+  <button mat-button (click)="novaJornada()" cdkFocusInitial>{{actionJornada}}</button>
+</mat-dialog-actions>
