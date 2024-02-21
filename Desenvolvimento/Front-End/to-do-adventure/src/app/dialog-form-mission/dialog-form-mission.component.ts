@@ -30,7 +30,7 @@ export class DialogFormMissionComponent implements OnInit {
   ngOnInit(): void { }
 
   isEditar(){
-    if (this.mission && this.mission.title !== '') {
+    if (this.mission && this.mission.id) {
       this.selectedDifficulty = this.mission.difficulty;
       this.label = "Editar";
       this.flagEditar = true;
