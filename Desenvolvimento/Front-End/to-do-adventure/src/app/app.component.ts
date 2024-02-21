@@ -20,7 +20,9 @@ export class AppComponent {
     'title': '',
     'difficulty': '',
     'description': '',
-    'deadline': ''
+    'deadline': '',
+    'runningTime': '00:00:00',
+    'status': 'available'
   };
 
   settedJourney: any;
@@ -184,6 +186,18 @@ export class AppComponent {
     }
   }
 
+  clearMission(){
+    this.mission = {
+      'id': 0,
+      'title': '',
+      'difficulty': '',
+      'description': '',
+      'deadline': '',
+      'runningTime': '00:00:00',
+      'status': 'available'
+    };
+  }
+
   openDialogMission(data: any, isDelete?: boolean, tipoDialog?: string){
     let dialogRef
     if(isDelete){
@@ -192,6 +206,7 @@ export class AppComponent {
       dialogRef = this.dialog.open( DialogWarningsComponent, {data});
       dialogRef.afterClosed().subscribe(result => {
         this.getSettedJourney();
+        this.clearMission();
       });
       return
     }
@@ -200,12 +215,14 @@ export class AppComponent {
         dialogRef = this.dialog.open( DialogFormMissionComponent, {data});
         dialogRef.afterClosed().subscribe(result => {
           this.getSettedJourney();
+          this.clearMission();
         });
         break;
       case 'jornada':
           dialogRef = this.dialog.open( DialogHeroJorneyComponent);
           dialogRef.afterClosed().subscribe(result => {
             this.getSettedJourney();
+            this.clearMission();
           });
 
         break;
