@@ -132,6 +132,8 @@ $task-text-font-weight: bold;
   margin: $card-margin;
   background-color: $card-bg-color;
   transition: transform 0.3s ease-in-out;
+  overflow: hidden;
+  overflow-y: auto;
 
   &:hover {
     transform: scale(1.05);
